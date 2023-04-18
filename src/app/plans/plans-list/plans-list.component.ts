@@ -115,6 +115,7 @@ export class PlansListComponent {
         this.offer_price = data.data[0].offer_price;
         this.total_sell = data.data[0].total_sell;
         this.status = data.data[0].status;
+        this.Create_Data = data.data[0].created;
       }else{
         this.alertService.error('Data Fatch Failed..');  // data.message -----
       }

@@ -41,7 +41,7 @@
                             <hr>
                             <form class="form" [formGroup]="createForm" (ngSubmit)="submit()"class="mt-4" enctype="multipart/form-data">  	
                                 <div class="row mt-3">
-                                    <div class="col-md-12" style="padding-left: 13px; ">
+                                    <div class="col-md-12" style="padding-left: 13px;">
                                         <label for="admin_id" class="tex"> admin_id :</label>
                                         <input type="text" class="form-control bg-transparent" name="admin_id" placeholder="Enter admin_id" formControlName="admin_id"
                                             [style.border]="(submitted && f['admin_id'].errors && f['admin_id'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /><br>  
@@ -56,15 +56,18 @@
                                             
                                         <label for="offer_price" class="tex"> Offer Price :</label>
                                         <input type="text" class="form-control bg-transparent" name="offer_price" placeholder="Enter Offer Price" formControlName="offer_price"
-                                            [style.border]="(submitted && f['offer_price'].errors && f['offer_price'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /><br>
+                                            [style.border]="(submitted && f['offer_price'].errors && f['offer_price'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'"/><br>
                                         
                                         <label for="total_sell" class="tex"> Total Sell :</label>
                                         <input type="text" class="form-control bg-transparent" name="total_sell" placeholder="Enter Total sell" formControlName="total_sell"
-                                            [style.border]="(submitted && f['total_sell'].errors && f['total_sell'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /><br>
+                                            [style.border]="(submitted && f['total_sell'].errors && f['total_sell'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'"/><br>
                                         
                                         <label for="status" class="tex"> Status :</label>
-                                        <input type="text" class="form-control bg-transparent" name="status" placeholder="Enter Status" formControlName="status"
-                                            [style.border]="(submitted && f['status'].errors && f['status'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /><br>
+                                        <select formcontrolname="status" name="status" class="form-select bg-transparent" [style.border]="(submitted && f['status'].errors && f['status'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'">
+                                            <option> Select Status</option>
+                                            <option value=true>Yes</option>
+                                            <option value=false>No</option>
+                                        </select><br>
 
                                         <div class="float-end">
                                             <input type="reset" class="btn cancelbtn" (click)="reset()" value="Cancal" name="cancal">

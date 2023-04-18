@@ -19,6 +19,10 @@ import { TemplateCreateComponent } from './template/template-create/template-cre
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UsersCreateComponent } from './users/users-create/users-create.component';
 import { UsersImportComponent } from './users/users-import/users-import.component';
+import { PaymentListComponent } from './payment/payment-list/payment-list.component';
+import { PaymentUpdateComponent } from './payment/payment-update/payment-update.component';
+import { SettingsListComponent } from './settings/settings-list/settings-list.component';
+import { SettingsUpdateComponent } from './settings/settings-update/settings-update.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { UsersImportComponent } from './users/users-import/users-import.componen
     TemplateCreateComponent,
     UsersListComponent,
     UsersCreateComponent,
-    UsersImportComponent
+    UsersImportComponent,
+    PaymentListComponent,
+    PaymentUpdateComponent,
+    SettingsListComponent,
+    SettingsUpdateComponent
   ],
   imports: [
     BrowserModule,
