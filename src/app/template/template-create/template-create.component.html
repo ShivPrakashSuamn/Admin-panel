@@ -1,0 +1,96 @@
+<div class="row">
+    <!--- sidebar  -->
+    <div style="transition: .5s;" class="p-0" [ngClass]="{'col-lg-1': toggleVal,'col-lg-2':!toggleVal}">
+        <app-sidebar (sidebarToggle)=sidebarToggle($event)> </app-sidebar>
+    </div>
+    
+    <div class="p-0 height-100" style="transition: .5s;" [ngClass]="{'col-lg-11': toggleVal,'col-lg-10':!toggleVal}"> 
+        <div class="container-fluid ">
+            <div class="col col-lg-12">
+                <div class="card1">
+                    <div class="m-3">
+                        <div class="p-3">              
+                            <div class="row mb-3" >
+                                <div class="col-md-6 p-0">
+                                    <div class="row">
+                                        <div class="col-lg-3 p-0">
+                                            <h2>
+                                                <b class="tex">Template</b>
+                                            </h2>
+                                        </div>
+                                        <div class="col-lg-9 p-0 mt-2">
+                                            <h4>
+                                                <b class="tex">
+                                                    <i class="fa fa-caret-right" style="padding-right: 18px;"></i>
+                                                    <span *ngIf="id == undefined">Add New</span>
+                                                    <span *ngIf="id != undefined">Edit</span>
+                                                    Template 
+                                                </b>
+                                            </h4>
+                                        </div>
+                                    </div> 
+                                    <p style="margin: 0; color: #b6b6b6d9;">Hare you can manage all your Template ditails.</p>
+                                </div>
+                                <div class="col-md-6 p-0"> 
+                                    <span style="float: right;">
+                                        <button routerLink="/template" type="button" class="btn squer-btn sm-btn edit icn"><i class='bx bx-chevrons-left nav_icon'></i>back</button>
+                                    </span>
+                                </div> 	
+                            </div>  
+                            <hr>
+                            <form class="form" [formGroup]="createForm" (ngSubmit)="submit()"class="mt-4" enctype="multipart/form-data">  	
+                                <div class="row" >
+                                    <div class="col-md-4">
+                                        <h4 class="tex"> Template file :</h4>
+                                        <div class="blank-box text-center mt-4"  [style.border]="(submitted && f['tempfile'].errors && f['tempfile'].errors['required'])==true ? '#ff00e29e dotted' :'#d5d7d6 dotted'">
+                                            <i [ngStyle]="{'color':uploadClock? '#1caa028a' : '#b6b6b6d9'}" class='bx bx-desktop nav_icon ' style="font-size: 100px;"></i>
+                                            <p class="text-mute">Drag to Drop files here to Upload or</p>
+                                            <div class="form-group imgUpload mx-auto edit">
+                                                <label for="exampleInputFile">Seletct File To Upload</label>
+                                                <input type="file" id="exampleInputFile" style="display: none;" name="tempfile" formControlName="tempfile" accept=".zip" (change)="handleFileUpload($event.target)"/>
+                                            </div>
+                                        </div>
+                                        <div class="tex text-center">
+                                            <h6 style="padding: 15px;">
+                                                <b><span>{{getImageName()}}</span></b>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 p-0">
+                                        <h4 class="tex"> Basic information :</h4>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12">
+                                                <label for="category" class="tex"> Category :</label>
+                                                <select formcontrolname="category" name="category" class="form-select bg-transparent" ng-reflect-name="category" >
+                                                    <option> Select Category</option>
+                                                    <option value="morning">Morning Time</option>
+                                                    <option value="yoga">Yoga</option>
+                                                    <option value="travels">Travels</option>
+                                                    <option value="study">Study</option>
+                                                </select><br>
+                                                <label for="title" class="tex"> Title :</label>
+                                                <input type="text" class="form-control bg-transparent" name="title" placeholder="Enter Title" formControlName="title"
+                                                    [style.border]="(submitted && f['title'].errors && f['title'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /><br>
+                                                <label for="description" class="tex"> Description :</label>
+                                                <input type="text" class="form-control bg-transparent" name="description" placeholder="Enter description" formControlName="description"
+                                                    [style.border]="(submitted && f['description'].errors && f['description'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /><br>    
+                                            
+                                                <div class="float-end">
+                                                    <input type="reset" class="btn cancelbtn" (click)="reset()" value="Cancal" name="cancal">
+                                                    <input type="submit" class="btn battcolor" value="SAVE" name="submit">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </form>     
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

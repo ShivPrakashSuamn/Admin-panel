@@ -1,0 +1,129 @@
+<!----Nave bar ----------->
+<div class="nave p-0 fixed-top shadow-lg b-color" style="height: 75px; ">
+    <div class="row ">
+        <div class="col-sm-6 mt-1" style=" transition: .5s;">
+            <a href="javascript:void(0)" class="tex" style="font-size: 25px; float: left; margin-left: -10px;">
+                <img src="../../assets/images/R.png" class="logo">
+                <span class="nav_logo-name" [ngClass]="{'N-move': toggleVal}" style="font-size: 43px;">Admin</span>
+            </a>
+            <a (click)="toggleSidebar()" href="javascript:void(0);">
+                <i class="fa fa-bars tex pt-2" style="font-size: 25px; float: left;" [ngClass]="{'Sm1': toggleVal, 'Sm2': !toggleVal}"></i>
+            </a>
+            <form style="margin-top: 14px;">
+                <input type="text" class="form-control tex " style="border: none;" placeholder="Search...."
+                    [(ngModel)]="search" name="search">
+                <button type="submit" class="tex" (click)="searchVal()">Search</button>
+            </form>
+        </div>
+        <div class="col-sm-6">
+            <div style=" float: right;">
+                <div class="float-right">
+                    <span> {{value}}</span>
+                    <mat-slide-toggle style="margin: 20px;"></mat-slide-toggle>
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                        class=" rounded-circle mt-2 imG" width="50px">
+                    <div class="btn-group">
+                        <a routerLink="#" class="tex" style="margin: 20px; font-size: 25px;" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-bell tex notification-info"></i>
+                        </a>
+                        <ul class="dropdown-menu listColor">
+                            <li><a class="dropdown-item" href="javascript:void(0)"><span class="tex">All Notification -</span></a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)"><span class="tex">Follow - 5 K</span></a></li>
+                            <li><a class="dropdown-item" href="#"><span class="tex">Unfollow - 0 K</span></a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)"><span class="tex">Separated link</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <a routerLink="#" style="margin: 20px; font-size: 25px;" (click)="envelopechang()" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa " [ngClass]="{'fa-envelope-open':mail_opne, 'fa-envelope': !mail_opne}" style="color: #6304f0b5;"> 
+                                <span matBadge="5" matBadgeColor="accent" style="right: -7px !important;"></span>
+                            </i>        
+                        </a>
+                        <ul class="dropdown-menu listColor" style="margin-top: 6px !important;">
+                            <li><a class="dropdown-item" href="javascript:void(0)"><span class="tex">Opne Email -</span></a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)"><span class="tex">Send Email -</span></a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)"><span class="tex">Something else here</span></a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)"><span class="tex">Separated link</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <a routerLink="#" class="tex" id="loading" style="margin: 20px; font-size: 25px;" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-cog tex" style="font-size: 25px;"></i>
+                        </a>
+                        <ul class="dropdown-menu listColor">
+                            <li>
+                                <a class="dropdown-item" href="JavaScript:void(0);" (click)="light()"style="color: #6304f0b5;">
+                                    Light Theme <img src="../assets/images/brightness.png" class="rounded-circle imgSet" />          
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="JavaScript:void(0);" (click)="dark()">
+                                    Dark Theme <img src="../assets/images/darc.png" class="rounded-circle imgSet" style="color: black;"/>   
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin: -3px;">
+    </div>
+</div>
+<!--- sidebar  -->
+<div class="col-lg-2 p-0">
+    <div class="l-navbar shadow-lg b-color man-box" id="nav-bar" style="background: aliceblue; width: inherit; z-index: 1;"
+        [ngClass]="{'w85': toggleVal}">
+        <nav class="nav" style="padding-left: 10px;">
+            <div class="mt-5 pt-5">
+                <div class="nav_list">
+                    <ul style="list-style-type: none; padding: 0px;">
+                        <li [class.active]="getActive('dashboard')" class="hover-Bg">
+                            <a routerLink="/dashboard" class="nav_link tex">
+                                <img src="../../assets/images/deshb.png" style="width: 24px;">
+                                <span class="nav_name">Dashboard</span>
+                            </a>
+                        </li>
+                        <li [class.active]="getActive('users')"class="hover-Bg">
+                            <a routerLink="/users" class="nav_link tex" style="margin-bottom: 18px;">
+                                <img src="../../assets/images/user0.webp" style="width: 24px;">
+                                <span class="nav_name">Users</span>
+                            </a>
+                        </li>
+                        <li [class.active]="getActive('template')" class="hover-Bg">
+                            <a routerLink="/template" class="nav_link tex" style="margin-bottom: 18px;">
+                                <img src="../../assets/images/template1.png" style="width: 24px;">
+                                <span class="nav_name">Template</span>
+                            </a>
+                        </li>
+                        <li [class.active]="getActive('plans')" class="hover-Bg">
+                            <a routerLink="/plans" class="nav_link tex" style="margin-bottom: 18px;">
+                                <img src="../../assets/images/planbook.png" style="width: 24px;">
+                                <span class="nav_name">Plans</span>
+                            </a>
+                        </li>
+                        <li [class.active]="getActive('payment')" class="hover-Bg">
+                            <a routerLink="/payment" class="nav_link tex" style="margin-bottom: 18px;">
+                                <img src="../../assets/images/pay3.png" style="width: 24px;">
+                                <span class="nav_name">Payment</span>
+                            </a>
+                        </li>
+                        <li [class.active]="getActive('setting')" class="hover-Bg">
+                            <a routerLink="/setting" class="nav_link tex" style="margin-bottom: 18px;">
+                                <img src="../../assets/images/set.webp" style="width: 24px;">
+                                <span class="nav_name">Settings</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <a routerLink="/login" class="nav_link tex">
+                    <img src="../../assets/images/log.png" style="width: 24px;">
+                    <span class="nav_name">SignOut</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+</div>

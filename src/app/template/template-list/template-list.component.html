@@ -1,0 +1,136 @@
+<div class="row">
+    <!--- sidebar  -->
+    <div style="transition: .5s;" class="p-0" [ngClass]="{'col-lg-1': toggleVal,'col-lg-2':!toggleVal}">
+        <app-sidebar (sidebarToggle)=sidebarToggle($event)> </app-sidebar>
+    </div>
+
+    <div class="p-0 height-100" style="transition: .5s;" [ngClass]="{'col-lg-11': toggleVal,'col-lg-10':!toggleVal}">
+        <div class="container-fluid ">
+            <div class="col-lg-12">
+                <div class="card1">
+                    <div class="m-3">
+                        <div class="p-3">
+                            <div class="row mb-2">
+                                <div class="col-md-6 p-0">
+                                    <h2><b class="tex"> Template </b></h2>
+                                    <p style="margin: 0; color: #b6b6b6d9;">Hare you can add & manage all your business Template.</p>
+                                </div>
+                                <div class="col-md-6 p-0">
+                                    <span style="float: right;">
+                                        <button routerLink="/template/create" type="button" class="btn squer-btn sm-btn edit icn">
+                                            <i class='bx bx-plus-circle nav_icon'></i>Add Template
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <form style=" width: 38%;">
+                                <input type="text" class="form-control tex " style="border: none;"
+                                    placeholder="Search...." [(ngModel)]="search" name="search">
+                                <button type="submit" class="tex" (click)="getData()">Search</button>
+                            </form>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12 p-0">
+                                    <table class="table table-striped table-lg tex">
+                                        <thead>
+                                            <tr>
+                                                <th (click)="sortBy('id')"> id <i class='bx bx-sort-alt-2 nav_icon'></i></th>
+                                                <th> </th>
+                                                <th style="color: blue;" (click)="sortBy('title')"> Title<i class='bx bx-sort nav_icon'></i></th>
+                                                <th (click)="sortBy('description')"> Description<i class='bx bx-sort nav_icon'></i></th>
+                                                <th (click)="sortBy('category')"> Category<i class='bx bx-sort nav_icon'></i></th>
+                                                <th> Create </th>
+                                                <th class="text-center"> Action </th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <!-- <ng-component *ngIf="data.length > 0" > -->
+                                            <tr *ngFor="let row of data">
+                                                <td>{{row.id}}</td>
+                                                <td class="p-1">
+                                                    <img src="../../../assets/images/tmp1.png" class="rounded tableImg" />
+                                                    <!-- <span *ngIf="row.image != 'null'"><img src="http://localhost:3001/uploads/images/{{row.image}}" class="card-img-top rounded-circle mb-3" style="width: 38px; height: 40px;"/></span>
+                                                        <span *ngIf="row.image == 'null'" class="pic_text"><span>{{row.fname.substr(0,1)}}</span></span> -->
+                                                </td>
+                                                <td> {{row.title}} </td>
+                                                <td> {{row.description}} </td>
+                                                <td> {{row.category}} </td>
+                                                <td> {{row.created | date:'medium'}} </td>
+                                                <td class="t_row p-0 text-center">
+                                                    <a routerLink="/template/update/{{row.id}}" data-dismiss="alert"><i class='bx bx-pencil nav_icon'></i> </a>
+                                                    <a herf="JavaScript:void(0)" (click)="showRow(row.id)" data-bs-toggle="modal" data-bs-target="#exampleModal" data-dismiss="alert">
+                                                        <i class='bx bx-show nav_icon btn spas'></i>
+                                                    </a>
+                                                    <a herf="JavaScript:void(0)" (click)="deleteRow(row.id)" data-dismiss="alert"><span class="btn spas">&times;</span></a>
+                                                </td>
+                                            </tr>
+                                            <!-- </ng-component> -->
+                                            <tr *ngIf="data.length == 0">
+                                                <td class="text-center" colspan="11">NO RECORD FOUND</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- Show Single Row Data in Table -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title tex" id="exampleModalLabel">{{title}} :</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div>
+                                                        <!-- <td> {{thumbnail}} </td> -->
+                                                        <img src="../../assets/images/tmp1.png" class="rounded imgThumbnail" />
+                                                    </div>
+                                                    <table class="table ">
+                                                        <tr>
+                                                            <th class="tex"> Category :</th>
+                                                            <td> {{ category }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="tex"> Description :</th>
+                                                            <td> {{ description }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="tex"> Created :</th>
+                                                            <td> {{created | date:'long'}}</td>
+                                                        </tr>                                                           
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary edit" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end -->
+                                    <div>
+                                        <span class="tex" style="margin: 0; color: #b6b6b6d9;"> Show </span>
+                                        <div class="btn-group">
+                                            <select class="form-select dropbutton" aria-label="Default select example"
+                                                [(ngModel)]="limit" (change)="getData()">
+                                                <option selected value="10">10</option>
+                                                <option value="20">20</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select>
+                                        </div>
+                                        <span style="margin: 0; color: #b6b6b6d9;"> Showing {{getTOFROM()}} of
+                                            {{totalRows}} entries</span>
+                                        <!-- Pagination  System Design   -->
+                                        <div style=" float: right;">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

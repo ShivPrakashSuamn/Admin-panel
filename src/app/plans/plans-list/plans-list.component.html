@@ -1,0 +1,119 @@
+<div class="row">
+    <!--- sidebar  -->
+    <div class="p-0" style="transition: .5s;" [ngClass]="{'col-lg-1': toggleVal,'col-lg-2':!toggleVal}">
+        <app-sidebar (sidebarToggle)=sidebarToggle($event)> </app-sidebar>
+    </div>
+
+    <div class="p-0 height-100" style="transition: .5s;" [ngClass]="{'col-lg-11': toggleVal,'col-lg-10':!toggleVal}">
+        <div class="container-fluid ">
+            <div class="card1">
+                <div class="m-3">
+                    <div class="p-3">
+                        <div class="row mb-2" >
+                            <div class="col-md-6 p-0"> 
+                                <h2><b class="tex"> Plans </b></h2>
+                                <p style="margin: 0; color: #b6b6b6d9;">Hare you can add & manage all your Business Plans .</p>
+                            </div>
+                            <div class="col-md-6 p-0">                                                                        
+                                <span style="float: right;">
+                                    <button routerLink="/plans/create" type="button" class="btn squer-btn sm-btn edit icn"><i class='bx bx-plus-circle nav_icon p-2'></i>Add Plans </button>
+                                </span>
+                            </div> 	
+                        </div>
+                        <form style=" width: 38%;">
+                            <input type="text" class="form-control tex " style="border: none;" placeholder="Search...."
+                                [(ngModel)]="search" name="search">
+                            <button type="submit" class="tex" (click)="getData()">Search</button>
+                        </form>
+                        <hr>
+                        <!-- for loop -->
+                        <div class="row" >
+                            <div class="col-md-12 p-0" >
+                                <table class="table table-striped table-lg tex" >
+                                    <thead>
+                                        <tr>
+                                            <th (click)="sortBy('id')">Id<i class='bx bx-sort-alt-2 nav_icon'></i></th> 
+                                            <th (click)="sortBy('title')"> Title <i class='bx bx-sort nav_icon'></i></th>
+                                            <th (click)="sortBy('Price')"> Price <i class='bx bx-sort nav_icon'></i></th>
+                                            <th (click)="sortBy('offer_price')"> offer_price <i class='bx bx-sort nav_icon'></i></th>
+                                            <th (click)="sortBy('total_sell')"> Total Sell <i class='bx bx-sort nav_icon'></i></th>
+                                            <th (click)="sortBy('Status')"> Status <i class='bx bx-sort nav_icon'></i></th>
+                                            <th > Created </th>
+                                            <th class="text-center"> Action	</th>
+                                        </tr> 
+                                    </thead>
+                                    
+                                    <tbody >
+                                        <!-- <ng-component *ngIf="data.length > 0" > -->
+                                            <tr *ngFor="let row of data" >
+                                                <td>{{row.id}}</td> 
+                                                <td>{{row.title}}</td> 
+                                                <td>{{row.price}}</td> 
+                                                <td>{{row.offer_price}}</td> 
+                                                <td>{{row.total_sell}}</td> 
+                                                <td>{{row.status}}</td> 
+                                                <td> {{row.created | date:'medium'}} </td> 
+                                                <td class="t_row p-0 text-center"> 
+                                                    <a routerLink="/plans/update/{{row.id}}" data-dismiss="alert"><i class='bx bx-pencil nav_icon'></i></a>
+                                                    <a herf="JavaScript:void(0)" (click)="showRow(row.id)" data-bs-toggle="modal" data-bs-target="#exampleModal" data-dismiss="alert"><i class='bx bx-show nav_icon btn spas'></i></a>
+                                                    <a herf="JavaScript:void(0)" (click)="deleteRow(row.id)" data-dismiss="alert"><span class="btn spas">&times;</span></a>
+                                                </td> 
+                                            </tr>
+                                        <!-- </ng-component> -->
+                                        <tr *ngIf="data.length == 0">
+                                            <td class="text-center" colspan="11">NO RECORD FOUND</td>
+                                        </tr>
+                                    </tbody> 
+                                </table>                                           
+                                  <!-- Show Single Row Data in Table -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title tex" id="exampleModalLabel">{{title}}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table class="table ">
+                                                        <tr>
+                                                            <th> Admin id :</th>
+                                                            <td> {{admin_id}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th> Create Data :</th>
+                                                            <td> {{Create_Data | date:'medium'}}</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary edit" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>   
+                                  <!-- end -->     
+                                <div >
+                                    <span class="tex" style="margin: 0; color: #b6b6b6d9;"> Show </span> 
+                                    <div class="btn-group">
+                                        <select class="form-select dropbutton" aria-label="Default select example"  [(ngModel)]="limit" (change)="getData()">
+                                            <option selected value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
+                                    </div>
+                                    <span style="margin: 0; color: #b6b6b6d9;"> Showing {{getTOFROM()}} of {{totalRows}} entries</span>
+                                    <!-- Pagination  System Design   -->
+                                    <div style=" float: right;">
+
+                                    </div>  
+                                </div>
+                            </div> 
+                        </div> 
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
