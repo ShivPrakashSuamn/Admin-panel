@@ -36,7 +36,7 @@ export class PaymentListComponent {
     let url = `/payment?limit=${this.limit}&page=${this.page}&order_by=${this.order_by}&order_type=${this.order_type}&search=${this.search}`;
     this.apiService.get(url , {}).subscribe((data:any)=>{
       if(data && data.status){
-        this.data = data.data.data; 
+        this.data = data.data.data;
         this.page = data.data.page;
         this.totalRows = data.data.total;
         this.userCount = data.data.allUser;
@@ -105,7 +105,7 @@ export class PaymentListComponent {
           noDownload: false,
           showTitle: false,
           useBom: false,
-          headers: ["Id","Plan Id", "User Id","Payment Id","Amount","Status","Created"]
+          headers: ["Id","Plan", "User","Payment Id","Amount","Status","Created"]
         };
         new ngxCsv(this.data, "Contact list", options);  // download CSV ------
         Swal.fire('SuccessFully !', 'List removed successfully.', 'success');

@@ -57,13 +57,13 @@
 
 .hover-Bg:hover {
     background: linear-gradient(315deg, #ff02ec1f, #bbe91e33);
-    width: 260px;
+    width: auto;
     border-radius: 5px;
 }
 
 .active {
     background: linear-gradient(315deg, #ff02ec5c, #bbe91e70);
-    width: 260px;
+    width: auto;
     border-radius: 5px;
     color: white;
 }
@@ -264,7 +264,7 @@ a {
 }
 
 .nav {
-    height: 100%;
+  
     display: flex;
     flex-direction: column;
     justify-content: space-between;

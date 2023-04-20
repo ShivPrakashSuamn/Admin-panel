@@ -63,11 +63,10 @@
                                             [style.border]="(submitted && f['total_sell'].errors && f['total_sell'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'"/><br>
                                         
                                         <label for="status" class="tex"> Status :</label>
-                                        <select formcontrolname="status" name="status" class="form-select bg-transparent" [style.border]="(submitted && f['status'].errors && f['status'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'">
-                                            <option> Select Status</option>
-                                            <option value=true>Yes</option>
-                                            <option value=false>No</option>
-                                        </select><br>
+                                            <input id="yes" type="radio" class="form-check-input" name="status" formControlName="status" value=1 checked/>
+                                            <label class="form-check-label" for="yes">Yes</label>
+                                            <input id="no" type="radio" class="form-check-input" name="status" formControlName="status" value=0 />
+                                            <label class="form-check-label" for="no">No </label>
 
                                         <div class="float-end">
                                             <input type="reset" class="btn cancelbtn" (click)="reset()" value="Cancal" name="cancal">

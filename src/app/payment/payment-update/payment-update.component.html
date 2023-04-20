@@ -1,1 +1,120 @@
-<p>payment-update works!</p>
+<div class="row">
+    <!--- sidebar  -->
+    <div style="transition: .5s;" class="p-0" [ngClass]="{'col-lg-1': toggleVal,'col-lg-2':!toggleVal}">
+        <app-sidebar (sidebarToggle)=sidebarToggle($event)> </app-sidebar>
+    </div>
+    
+    <div class="p-0 height-100" style="transition: .5s;" [ngClass]="{'col-lg-11': toggleVal,'col-lg-10':!toggleVal}"> 
+        <div class="container-fluid ">
+            <div class="col col-lg-12">
+                <div class="card1">
+                    <div class="m-3">
+                        <div class="p-3">              
+                            <div class="row mb-3" >
+                                <div class="col-md-6 p-0"> 
+                                    <div class="row">
+                                        <div class="col-lg-3 p-0">
+                                            <h2>
+                                                <b class="tex">Payment</b>
+                                            </h2>
+                                        </div>
+                                        <div class="col-lg-9 p-0 mt-2">
+                                            <h4>
+                                                <b class="tex">
+                                                    <i class="fa fa-caret-right" style="padding-right: 18px;"></i>
+                                                    <span *ngIf="id == undefined">Add New</span>
+                                                    <span *ngIf="id != undefined">Edit</span>
+                                                    Payment
+                                                </b>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <p style="margin: 0; color: #b6b6b6d9;">Hare you can manage all your payment ditails.</p>
+                                </div>
+                                <div class="col-md-6 p-0"> 
+                                    <span style="float: right;">
+                                        <button routerLink="/payment" type="button" class="btn squer-btn sm-btn edit icn"><i class='bx bx-chevrons-left nav_icon'></i>back</button>
+                                    </span>
+                                </div> 	
+                            </div>  
+                            <hr>
+                            <form class="form" [formGroup]="createForm" (ngSubmit)="submit()"class="mt-4" enctype="multipart/form-data">  	
+                                <div class="row" >
+                                    <div class="col-md-12 p-0">
+                                        <h4 class="tex"> Basic information :</h4>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12">
+                                                <label for="plan_id" class="tex"> Plans :</label>
+                                                <select formControlName="plan_id" name="plan_id" class="form-select bg-transparent" ng-reflect-name="plan_id" 
+                                                            [style.border]="(submitted && f['plan_id'].errors && f['plan_id'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'">
+                                                    <option> Select Plan</option>
+                                                    <option value="basic">Basic</option>
+                                                    <option value="pro">Pro</option>
+                                                    <option value="super">Super</option>
+                                                </select><br>
+                                                
+                                                <label for="user_id" class="tex"> Users :</label>
+                                                <select formControlName="user_id" name="user_id" class="form-select bg-transparent" ng-reflect-name="user_id" 
+                                                            [style.border]="(submitted && f['user_id'].errors && f['user_id'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'">
+                                                    <option *ngFor="let user of data" value="{{user.id}}">{{user.fname}} {{user.lname}}</option>
+                                                </select><br>
+                                                <!--<input type="text" class="form-control bg-transparent" name="user_id" placeholder="Enter User Id" formControlName="user_id"
+                                                    [style.border]="(submitted && f['user_id'].errors && f['user_id'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /><br>
+                                                <label for="payment_id" class="tex">Payment Id :</label>
+                                                <input type="text"class="form-control bg-transparent" name="payment_id" placeholder="Enter Payment id" formControlName="payment_id"
+                                                    [style.border]="(submitted && f['payment_id'].errors && f['payment_id'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /><br> -->
+                                                <label for="amount" class="tex"> Amount :</label>
+                                                <input type="text" class="form-control bg-transparent" name="amount" formControlName="amount" placeholder="amount."
+                                                    [style.border]="(submitted && f['amount'].errors && f['amount'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /><br>
+
+                                                <label for="status" class="tex"> Status :</label>
+                                                    <input id="yes" type="radio" class="form-check-input" name="status" formControlName="status" value=1 checked/>
+                                                    <label class="form-check-label" for="yes">Yes</label>
+                                                    <input id="no" type="radio" class="form-check-input" name="status" formControlName="status" value=0 />
+                                                    <label class="form-check-label" for="no">No </label>
+                                    
+                                                <div class="float-end mb-3">
+                                                    <button type="button" class="btn cancelbtn edit" style="color: white;" (click)="showTable()"><i class='bx bx-library nav_icon'></i> Features</button>
+                                                    <input type="reset" class="btn cancelbtn" (click)="reset()" value="Cancal" name="cancal">
+                                                    <input type="submit" class="btn battcolor" value="SAVE" name="submit">
+                                                </div> 
+                                                <form [formGroup]="form">   
+                                                    <div formArrayName="passenger">                                          
+                                                        <table class="table table-bordered" *ngIf = "isShow">
+                                                            <thead style="background: #dee2e6f0;">
+                                                                <tr class="tex">
+                                                                    <th scope="col">#</th>
+                                                                    <th scope="col">Title</th>
+                                                                    <th scope="col">Value</th>
+                                                                    <th scope="col">Remove</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let passengerGroup of passenger?.controls; let i = index" [formGroupName]="i">
+                                                                    <th class="tex">{{i + 1}}</th>
+                                                                    <td><input type="text"class="form-control bg-transparent" formControlName="title" placeholder="Title" /></td>
+                                                                    <td><input type="text"class="form-control bg-transparent" formControlName="value" placeholder="Value" /></td>
+                                                                    <td><button type="button" class="btn btn-danger" (click)="deleteRow(i)" >&times;</button></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4"><button type="button" class="btn btn-info float-end text-white"(click)="addRow()" >+ Add Row</button></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </form>     
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
