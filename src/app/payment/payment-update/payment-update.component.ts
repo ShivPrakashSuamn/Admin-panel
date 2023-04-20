@@ -14,10 +14,11 @@ export class PaymentUpdateComponent {
   createForm: FormGroup;
   submitted: any = false;
   data: any = [];
+  features:any = [];
   id: any = undefined;
   serverDeluxe:any = false;
   isShow:any=false;
-  form: FormGroup;
+  planData:any = [];
 
   // ----------------    life cycle of angular    --------------------  ||
 
@@ -29,14 +30,6 @@ export class PaymentUpdateComponent {
       amount: ['', Validators.required],
       status: ['', Validators.required],
     });
-    this.form = new FormGroup({
-      passenger: new FormArray([
-        new FormGroup({
-          title: new FormControl(''),
-          value: new FormControl('')
-        })
-      ])
-    });
   }
 
   ngOnInit() {        //  ngOninit Function -------------------------
@@ -45,6 +38,7 @@ export class PaymentUpdateComponent {
       console.log('Update id =', this.id)
       this.getData();
       this.getUser();
+      this.getPlan();
     }
   }
 
@@ -54,22 +48,6 @@ export class PaymentUpdateComponent {
 
   // ----------------    custome methods   --------------------------  ||
 
-  get passenger(): FormArray {
-    return this.form.get('passenger') as FormArray;
-  }
-
-  addRow() {
-    this.passenger.push(
-      new FormGroup({
-        title: new FormControl(''),
-        value: new FormControl('')
-      })
-    );
-  }
-
-  deleteRow(id:any){
-    this.passenger.removeAt(id)
-  } 
 
   showTable(){    // features table   --------------------------------
     this.isShow = !this.isShow; 
@@ -98,7 +76,9 @@ export class PaymentUpdateComponent {
     let url: string = `/payment/show?id=${this.id}`;
     this.apiService.get(url , {}).subscribe((data: any) => {
       if (data && data.status) {
-        let userData = data.data[0];
+        this.features = data.data.features;
+
+        let userData = data.data.data[0];
         this.createForm = this.fb.group({
           plan_id: [`${userData.plan_id}`, Validators.required],
           user_id: [`${userData.user_id}`, Validators.required],
@@ -112,6 +92,18 @@ export class PaymentUpdateComponent {
     });
   }
   
+  getPlan() {           //  plans data  -------------------------------
+    let url:string = `/plans`;
+    this.apiService.get(url , {}).subscribe((data:any) => {
+        if(data && data.status){
+          this.planData = data.data.data; 
+        }else{
+          this.alertService.error('Data Fatch Failed..');  // data.message -----
+        }
+      }
+    );
+  }
+
   getUser() {           //  User data  -------------------------------
     let url:string = `/user`;
     this.apiService.get(url , {}).subscribe((data:any) => {

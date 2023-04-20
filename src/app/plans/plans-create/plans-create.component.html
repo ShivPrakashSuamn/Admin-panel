@@ -61,7 +61,32 @@
                                         <label for="total_sell" class="tex"> Total Sell :</label>
                                         <input type="text" class="form-control bg-transparent" name="total_sell" placeholder="Enter Total sell" formControlName="total_sell"
                                             [style.border]="(submitted && f['total_sell'].errors && f['total_sell'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'"/><br>
-                                        
+                                    
+                                        <form [formGroup]="form">   
+                                            <div formArrayName="passenger">                                          
+                                                <table class="table table-bordered" *ngIf = "isShow">
+                                                    <thead style="background: #dee2e6f0;">
+                                                        <tr class="tex">
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Title</th>
+                                                            <th scope="col">Value</th>
+                                                            <th scope="col">Remove</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let passengerGroup of passenger?.controls; let i = index" [formGroupName]="i">
+                                                            <th class="tex">{{i + 1}}</th>
+                                                            <td><input type="text"class="form-control bg-transparent" formControlName="title" placeholder="Title" /></td>
+                                                            <td><input type="text"class="form-control bg-transparent" formControlName="value" placeholder="Value" /></td>
+                                                            <td><button type="button" class="btn btn-danger" (click)="deleteRow(i)" >&times;</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="4"><button type="button" class="btn btn-info float-end text-white"(click)="addRow()" >+ Add Row</button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </form>
                                         <label for="status" class="tex"> Status :</label>
                                             <input id="yes" type="radio" class="form-check-input" name="status" formControlName="status" value=1 checked/>
                                             <label class="form-check-label" for="yes">Yes</label>
@@ -69,6 +94,7 @@
                                             <label class="form-check-label" for="no">No </label>
 
                                         <div class="float-end">
+                                            <button type="button" class="btn cancelbtn edit" style="color: white;" (click)="showTable()"><i class='bx bx-library nav_icon'></i> Features</button>
                                             <input type="reset" class="btn cancelbtn" (click)="reset()" value="Cancal" name="cancal">
                                             <input type="submit" class="btn battcolor" value="SAVE" name="submit">
                                         </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl,FormArray} from '@angular/forms';
 import { AlertService } from 'src/app/_services/alert.service';
 import { ApiService } from 'src/app/_services/api.service';
 import { ActivatedRoute } from '@angular/router'
@@ -20,7 +20,8 @@ export class PlansCreateComponent {
   offer_price:any = '';
   total_sell:any = '';
   status:any = '';
-
+  form: FormGroup;
+  isShow:any=false;
   // ----------------    life cycle of angular    --------------------  ||
 
   constructor(private fb: FormBuilder, private alertService: AlertService, private route: ActivatedRoute, private apiService: ApiService) {
@@ -31,6 +32,14 @@ export class PlansCreateComponent {
       offer_price: ['', Validators.required],
       total_sell: ['', Validators.required],
       status: ['', Validators.required],
+    });
+    this.form = new FormGroup({
+      passenger: new FormArray([
+        new FormGroup({
+          title: new FormControl(''),
+          value: new FormControl('')
+        })
+      ])
     });
   }
 
@@ -46,6 +55,28 @@ export class PlansCreateComponent {
   }
 
   // ----------------    custome methods   --------------------------  ||
+
+  get passenger(): FormArray {
+    return this.form.get('passenger') as FormArray;
+  }
+
+  addRow() {
+    this.passenger.push(
+      new FormGroup({
+        title: new FormControl(''),
+        value: new FormControl('')
+      })
+    );
+  }
+
+  deleteRow(id:any){
+    this.passenger.removeAt(id)
+  } 
+ 
+  showTable(){    // features table   --------------------------------
+    this.isShow = !this.isShow; 
+  }
+
 
   submit() {    // Submit Form    -----------------------------------
     console.log('Submit Button Click');
