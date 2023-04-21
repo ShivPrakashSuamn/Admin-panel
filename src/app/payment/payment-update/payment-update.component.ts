@@ -19,12 +19,11 @@ export class PaymentUpdateComponent {
   serverDeluxe:any = false;
   isShow:any=false;
   planData:any = [];
-
   // ----------------    life cycle of angular    --------------------  ||
 
   constructor(private fb: FormBuilder, private alertService: AlertService, private route: ActivatedRoute, private apiService: ApiService) {
     this.createForm = fb.group({
-      plan_id: ['', Validators.required],
+      plan_id: ['', [Validators.required]],
       user_id: ['', Validators.required],
       payment_id: ['', Validators.required],
       amount: ['', Validators.required],
@@ -80,10 +79,10 @@ export class PaymentUpdateComponent {
 
         let userData = data.data.data[0];
         this.createForm = this.fb.group({
-          plan_id: [`${userData.plan_id}`, Validators.required],
-          user_id: [`${userData.user_id}`, Validators.required],
+          plan_id: new FormControl({value: `${userData.plan_id}`, disabled: true}, Validators.required),
+          user_id: new FormControl({value: `${userData.user_id}`, disabled: true}, Validators.required),
           payment_id: [`${userData.payment_id}`, Validators.required],
-          amount: [`${userData.amount}`, Validators.required],
+          amount: new FormControl({value: `${userData.amount}`, disabled: true}, Validators.required),
           status: [`${userData.status}`, Validators.required],
         });
       } else {
