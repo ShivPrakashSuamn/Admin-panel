@@ -19,9 +19,9 @@ export class DashboardComponent {
   getdata() {
     let url: string = '/auth/profile';
     let headers = new HttpHeaders().set("authorization", `Bearer ${localStorage.getItem('token')}`);
-    this.apiService.get(url, { headers }).subscribe((data: any) => {
-      console.log('data ', data);
-    });
+    // this.apiService.get(url, { headers }).subscribe((data: any) => {
+    //   console.log('data ', data);
+    // });
   }
 
   sidebarToggle(eventData: { toggleVal: boolean }) {

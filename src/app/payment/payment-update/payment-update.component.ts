@@ -79,10 +79,10 @@ export class PaymentUpdateComponent {
 
         let userData = data.data.data[0];
         this.createForm = this.fb.group({
-          plan_id: new FormControl({value: `${userData.plan_id}`, disabled: true}, Validators.required),
-          user_id: new FormControl({value: `${userData.user_id}`, disabled: true}, Validators.required),
+          plan_id: new FormControl({value: userData.plan_id, disabled: true}, Validators.required),
+          user_id: new FormControl({value: userData.user_id, disabled: true}, Validators.required),
           payment_id: [`${userData.payment_id}`, Validators.required],
-          amount: new FormControl({value: `${userData.amount}`, disabled: true}, Validators.required),
+          amount: new FormControl({value: userData.amount, disabled: true}, Validators.required),
           status: [`${userData.status}`, Validators.required],
         });
       } else {

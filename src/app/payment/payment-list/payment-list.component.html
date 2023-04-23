@@ -35,7 +35,7 @@
                                                     <th (click)="sortBy('id')">  Id <i class='bx bx-sort nav_icon'></i></th> 
                                                     <th (click)="sortBy('plan_id')"> Plans <i class='bx bx-sort nav_icon'></i></th>
                                                     <th (click)="sortBy('user_id')"> Users <i class='bx bx-sort nav_icon'></i></th>
-                                                    <th (click)="sortBy('payment_id')"> Payment Id <i class='bx bx-sort nav_icon'></i></th>
+                                                    <!-- <th (click)="sortBy('payment_id')"> Payment Id <i class='bx bx-sort nav_icon'></i></th> -->
                                                     <th (click)="sortBy('amount')"> Amount <i class='bx bx-sort nav_icon'></i></th>
                                                     <th (click)="sortBy('status ')"> Status  <i class='bx bx-sort nav_icon'></i></th>
                                                     <th> Created </th>
@@ -47,9 +47,10 @@
                                                     <td> {{row.id}} </td> 
                                                     <td> {{row.title}}  </td>
                                                     <td> {{row.fname}} {{row.lname}} </td>
-                                                    <td> {{row.payment_id}}  </td> 
-                                                    <td> {{row.amount}}  </td> 
-                                                    <td> {{row.status}}  </td> 
+                                                    <!-- <td> {{row.payment_id}}  </td>  -->
+                                                    <td> {{row.amount | currency}}  </td> 
+                                                    <td *ngIf="row.status == 1"> Purchase </td> 
+                                                    <td *ngIf="row.status == 0"> Unpurchase </td> 
                                                     <td> {{row.created | date:'short'}}  </td> 
                                                     <td class="t_row p-0"> 
                                                         <a routerLink="/payment/update/{{row.id}}" data-dismiss="alert"><i class='bx bx-pencil nav_icon'></i></a>

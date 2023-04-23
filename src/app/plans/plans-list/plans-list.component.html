@@ -48,10 +48,11 @@
                                             <tr *ngFor="let row of data" >
                                                 <td>{{row.id}}</td> 
                                                 <td>{{row.title}}</td> 
-                                                <td>{{row.price}}</td> 
-                                                <td>{{row.offer_price}}</td> 
+                                                <td>{{row.price | currency:'INR'}}</td> 
+                                                <td>{{row.offer_price | percent }}</td> 
                                                 <td>{{row.total_sell}}</td> 
-                                                <td>{{row.status}}</td> 
+                                                <td *ngIf="row.status == 1">Yes</td> 
+                                                <td *ngIf="row.status == 0">No</td> 
                                                 <td> {{row.created | date:'medium'}} </td> 
                                                 <td class="t_row p-0 text-center"> 
                                                     <a routerLink="/plans/update/{{row.id}}" data-dismiss="alert"><i class='bx bx-pencil nav_icon'></i></a>
@@ -81,11 +82,11 @@
                                                         </tr>
                                                         <tr>
                                                             <th> Price :</th>
-                                                            <td> {{price}}</td>
+                                                            <td> {{price | currency:'INR'}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th> Total Sell :</th>
-                                                            <td> {{total_sell}}</td>
+                                                            <td> {{total_sell  | percent }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th> Status :</th>

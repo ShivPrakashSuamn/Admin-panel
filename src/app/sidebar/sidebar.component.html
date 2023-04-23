@@ -10,8 +10,7 @@
                 <i class="fa fa-bars tex pt-2" style="font-size: 25px; float: left;" [ngClass]="{'Sm1': toggleVal, 'Sm2': !toggleVal}"></i>
             </a>
             <form style="margin-top: 14px;">
-                <input type="text" class="form-control tex " style="border: none;" placeholder="Search...."
-                    [(ngModel)]="search" name="search">
+                <input type="text" class="form-control tex " style="border: none;" placeholder="Search...." [(ngModel)]="search" name="search" disabled>
                 <button type="submit" class="tex" (click)="searchVal()">Search</button>
             </form>
         </div>
@@ -19,10 +18,9 @@
             <div style=" float: right;">
                 <div class="float-right">
                     <span> {{value}}</span>
-                    <mat-slide-toggle style="margin: 20px;"></mat-slide-toggle>
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                        class=" rounded-circle mt-2 imG" width="50px">
-                    <div class="btn-group">
+                    <!-- <mat-slide-toggle style="margin: 20px;"></mat-slide-toggle> -->
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" class=" rounded-circle mt-2 imG" width="50px">
+                    <!-- <div class="btn-group">
                         <a routerLink="#" class="tex" style="margin: 20px; font-size: 25px;" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-bell tex notification-info"></i>
                         </a>
@@ -47,7 +45,7 @@
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="javascript:void(0)"><span class="tex">Separated link</span></a></li>
                         </ul>
-                    </div>
+                    </div> -->
                     <div class="btn-group">
                         <a routerLink="#" class="tex" id="loading" style="margin: 20px; font-size: 25px;" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-cog tex" style="font-size: 25px;"></i>

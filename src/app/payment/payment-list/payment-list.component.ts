@@ -63,28 +63,28 @@ export class PaymentListComponent {
     this.getData(); 
   }
 
-  deleteRow(id:any) {   //  Delete Row Function     ----------------------------
-    console.log('id -->',id);
-    Swal.fire({
-      title: 'DELETE ROW ?',
-      text: 'Do you want to delete this row',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, go ahead.',
-      cancelButtonText: 'No, let me think',
-    }).then((result) => {
-      if (result.value) {
-        Swal.fire('SuccessFully !', 'Row deleted Successfully.', 'success');
-        let url:string = `/payment/delete?id=${id}`;
-        this.apiService.get(url , {}).subscribe((data:any) => {
-          this.getData(); 
-          console.log('deleteRow Status -',data.status) ;   
-        });
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelled', 'Row still in our database.', 'error');
-      }
-    });
-  }
+  // deleteRow(id:any) {   //  Delete Row Function     ----------------------------
+  //   console.log('id -->',id);
+  //   Swal.fire({
+  //     title: 'DELETE ROW ?',
+  //     text: 'Do you want to delete this row',
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonText: 'Yes, go ahead.',
+  //     cancelButtonText: 'No, let me think',
+  //   }).then((result) => {
+  //     if (result.value) {
+  //       Swal.fire('SuccessFully !', 'Row deleted Successfully.', 'success');
+  //       let url:string = `/payment/delete?id=${id}`;
+  //       this.apiService.get(url , {}).subscribe((data:any) => {
+  //         this.getData(); 
+  //         console.log('deleteRow Status -',data.status) ;   
+  //       });
+  //     } else if (result.dismiss === Swal.DismissReason.cancel) {
+  //       Swal.fire('Cancelled', 'Row still in our database.', 'error');
+  //     }
+  //   });
+  // }
 
   exportList() {        //  Export All Data in list   -------------------------- 
     Swal.fire({
@@ -105,7 +105,7 @@ export class PaymentListComponent {
           noDownload: false,
           showTitle: false,
           useBom: false,
-          headers: ["Id","Plan", "User","Payment Id","Amount","Status","Created"]
+          headers: ["Id","Plan", "User","Amount","Status","Created"]
         };
         new ngxCsv(this.data, "Contact list", options);  // download CSV ------
         Swal.fire('SuccessFully !', 'List removed successfully.', 'success');

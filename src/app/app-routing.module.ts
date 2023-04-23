@@ -13,6 +13,7 @@ import { PaymentListComponent } from './payment/payment-list/payment-list.compon
 import { PaymentUpdateComponent } from './payment/payment-update/payment-update.component';
 import { SettingsListComponent } from './settings/settings-list/settings-list.component';
 import { SettingsUpdateComponent } from './settings/settings-update/settings-update.component';
+import { NoPageComponent } from './no-page/no-page.component';
 
 const routes: Routes = [
   {path: 'sidebar', component: SidebarComponent},
@@ -32,6 +33,7 @@ const routes: Routes = [
   {path: 'setting', component: SettingsListComponent},
     {path: 'setting/update/:id', component: SettingsUpdateComponent},
 
+  {path: '**', component: NoPageComponent},
 ];
 
 @NgModule({
