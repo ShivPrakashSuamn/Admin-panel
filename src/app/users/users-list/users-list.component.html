@@ -17,7 +17,7 @@
                                 </div>
                                 <div class="col-md-6 p-0"> 
                                     <span style="float: right;">
-                                        <button type="button" routerLink="/users/import" class="btn squer-btn sm-btn battcolor" > Import</button>
+                                        <!-- <button type="button" routerLink="/users/import" class="btn squer-btn sm-btn battcolor" > Import</button> -->
                                         <button type="button" (click)="exportList()" class="btn squer-btn sm-btn battcolor" > Export</button>
                                         <button routerLink="/users/create" type="button" class="btn squer-btn sm-btn edit icn" ><i class='bx bx-plus-circle nav_icon'></i>Add  User</button>
                                     </span>
@@ -34,11 +34,12 @@
                                     <table class="table table-striped table-lg tex" >
                                         <thead>
                                             <tr>
-                                                <th (click)="sortBy('id')">  Id <i class='bx bx-sort-alt-2 nav_icon'></i> </th> 
+                                                <th (click)="sortBy('id')">  Id <i class='bx bx-sort-alt-2 nav_icon'></i> </th>
+                                                <td> </td> 
                                                 <th style="color: blue;" (click)="sortBy('fname')"> First Name<i class='bx bx-sort nav_icon'></i></th>
                                                 <th (click)="sortBy('lname')">  Last Name <i class='bx bx-sort nav_icon'></i></th>
                                                 <th (click)="sortBy('email')"> Email Address<i class='bx bx-sort nav_icon'></i></th>
-                                                <th (click)="sortBy('password')"> Password <i class='bx bx-sort nav_icon'></i></th>
+                                                <th (click)="sortBy('mobile')"> Mobile No<i class='bx bx-sort nav_icon'></i></th>
                                                 <th > Created </th>
                                                 <th class="text-center"> Action	</th>
                                             </tr> 
@@ -48,11 +49,15 @@
                                             <!-- <ng-component *ngIf="data.length > 0" > -->
                                                 <tr *ngFor="let row of data" >
                                                     <td>{{row.id}}</td> 
+                                                    <td >
+                                                        <span *ngIf="row.image != 'null'"><img src="http://localhost:3001/uploads/images/{{row.image}}" class="rounded-circle p-0 profile-image" /></span>
+                                                        <span *ngIf="row.image == 'null'" class="pic_text"><span>{{row.fname.substr(0,1)}}</span></span>
+                                                    </td>
                                                     <td> {{row.fname}} </td>
                                                     <td> {{row.lname}} </td> 
                                                     <td> <div class='overflow'>{{row.email}} </div></td> 
-                                                    <td> <div class='overflow'> {{row.password}} </div></td> 
-                                                    <td> {{row.create | date:'short'}} </td> 
+                                                    <td> {{row.mobile}} </td>
+                                                    <td> {{row.created | date:'short'}} </td> 
                                                     <td class="t_row p-0 text-center"> 
                                                         <a routerLink="/users/update/{{row.id}}" data-dismiss="alert"><i class='bx bx-pencil nav_icon'></i></a>
                                                         <a herf="JavaScript:void(0)" (click)="showRow(row.id)" data-bs-toggle="modal" data-bs-target="#exampleModal" data-dismiss="alert"><i class='bx bx-show nav_icon btn spas'></i></a>
@@ -70,22 +75,30 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title tex" id="exampleModalLabel">Only One Line Data : </h5>
+                                                        <h5 class="modal-title tex" id="exampleModalLabel"> One Line Data : </h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <table class="table ">
+                                                        <table class="table ">                                                  
                                                             <tr>
-                                                                <th> Name :</th>
+                                                                <th>Name : </th>
                                                                 <td> {{fname}} {{lname}}</td>
+                                                                <td rowspan="4" class="p-0">
+                                                                    <span *ngIf="image != 'null'"><img src="http://localhost:3001/uploads/images/{{image}}" class="rounded-circle p-0 show-image"/></span>
+                                                                    <span *ngIf="image == 'null'" class="p-0"><div class="text-image tex"><b style="font-size: 70px;">{{fname.substr(0,1)}}</b></div></span>
+                                                                </td>
                                                             </tr>
                                                             <tr>
-                                                                <th> Email :</th>
-                                                                <td> {{email}}</td>
+                                                                <th>Email : </th>
+                                                                <td> {{email}}</td>                                                                
                                                             </tr>
                                                             <tr>
-                                                                <th> Created :</th>
-                                                                <td> {{create | date:'medium'}}</td>
+                                                                <th>Mobile : </th>
+                                                                <td> {{mobile}}</td>                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Create : </th>
+                                                                <td> {{created | date:'medium'}}</td>                                                               
                                                             </tr>
                                                         </table>
                                                     </div>

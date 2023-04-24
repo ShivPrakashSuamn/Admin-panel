@@ -45,19 +45,19 @@
                                         <div class="row mt-3">
                                             <div class="col-md-12">
                                                 <label for="plan_id" class="tex"> Plans :</label>
-                                                <select formControlName="plan_id" name="plan_id" class="form-select bg-transparent"  
+                                                <select formControlName="plan_id" name="plan_id" class="form-select bg-transparen cursor"  
                                                             [style.border]="(submitted && f['plan_id'].errors && f['plan_id'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'">
                                                     <option *ngFor="let plan of planData" value="{{plan.id}}">{{plan.title}}</option>
                                                 </select><br>
                                                 
                                                 <label for="user_id" class="tex"> Users :</label>
-                                                <select formControlName="user_id" name="user_id" class="form-select bg-transparent" 
+                                                <select formControlName="user_id" name="user_id" class="form-select bg-transparent cursor" 
                                                             [style.border]="(submitted && f['user_id'].errors && f['user_id'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'">
                                                     <option *ngFor="let user of data" value="{{user.id}}">{{user.fname}} {{user.lname}}</option>
                                                 </select><br>
                                 
                                                 <label for="amount" class="tex"> Amount :</label>
-                                                <input type="text" class="form-control bg-transparent" name="amount" formControlName="amount" placeholder="amount." 
+                                                <input type="text" class="form-control bg-transparent cursor" name="amount" formControlName="amount" placeholder="amount." 
                                                     [style.border]="(submitted && f['amount'].errors && f['amount'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /><br>
                                                 
                                                 <table class="table table-bordered" *ngIf = "isShow">

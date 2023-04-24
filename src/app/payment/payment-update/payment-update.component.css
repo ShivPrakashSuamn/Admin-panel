@@ -101,3 +101,6 @@ h1 {
 .form-check-input{
   margin: 5px 10px;
 }
+.cursor{
+  cursor: no-drop;
+}

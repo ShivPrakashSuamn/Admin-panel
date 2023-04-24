@@ -22,7 +22,9 @@ export class UsersListComponent {
   fname:string = '';
   lname:string = '';
   email:string = '';
-  create:string = '';
+  mobile:string = '';
+  image:string = '';
+  created:string = '';
 
   // ---------------------    life cycle of angular    --------------------  ||
 
@@ -37,7 +39,7 @@ export class UsersListComponent {
   getData() {           //  Data Get databes   ---------------------------------
     let url:string = `/user?limit=${this.limit}&page=${this.page}&order_by=${this.order_by}&order_type=${this.order_type}&search=${this.search}`;
     this.apiService.get(url , {}).subscribe((data:any) => {
-      // console.log('data',data.data.data);
+       console.log('data',data.data.data);
         if(data && data.status){
           this.page = data.data.page;
           this.data = data.data.data; 
@@ -90,7 +92,7 @@ export class UsersListComponent {
           noDownload: false,
           showTitle: false,
           useBom: false,
-          headers: ["Id","First Name","Last Name","Email","Password","Created"]
+          headers: ["Id","First Name","Last Name","Email","Mobile","Image","Created"]
         };
         new ngxCsv(this.data, "Contact List", options);  // download CSV ------
         Swal.fire('SuccessFully !', 'List Removed Successfully.', 'success');
@@ -109,7 +111,9 @@ export class UsersListComponent {
         this.fname = data.data[0].fname;
         this.lname = data.data[0].lname;
         this.email = data.data[0].email;
-        this.create = data.data[0].create;
+        this.mobile = data.data[0].mobile;
+        this.image = data.data[0].image;
+        this.created = data.data[0].created;
       }else{
         this.alertService.error('Data Fatch Failed..');  // data.message -----
       }

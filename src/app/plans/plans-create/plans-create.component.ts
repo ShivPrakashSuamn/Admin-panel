@@ -26,11 +26,9 @@ export class PlansCreateComponent {
 
   constructor(private fb: FormBuilder, private alertService: AlertService, private route: ActivatedRoute, private apiService: ApiService) {
     this.createForm = fb.group({
-      admin_id: ['', Validators.required],
       title: ['', Validators.required],
       price: ['', Validators.required],
       offer_price: ['', Validators.required],
-      total_sell: ['', Validators.required],
       status: ['', Validators.required],
     });
     this.form = new FormGroup({
@@ -84,20 +82,22 @@ export class PlansCreateComponent {
     if (this.createForm.valid) {
       console.log('Create Form Data =', this.createForm.value);
 
-      const body = this.createForm.value;
+      var body = this.createForm.value;
+      body.features = this.form.value.passenger;
+      console.log('body',body)
       let url:string = '/plans/store';
       if(this.id){
         url = `/plans/update?id=${this.id}`; 
       }
 
-      this.apiService.post(url, body, {}).subscribe((data:any)=>{
-        console.log('form result -', data);
-        if(data.status){
-          this.alertService.success(data.message); // Alert---
-        } else {
-          this.alertService.warning(data.message); // Alert---
-        }
-      })
+      // this.apiService.post(url, body, {}).subscribe((data:any)=>{
+      //   console.log('form result -', data);
+      //   if(data.status){
+      //     this.alertService.success(data.message); // Alert---
+      //   } else {
+      //     this.alertService.warning(data.message); // Alert---
+      //   }
+      // })
     } else {
       this.alertService.error('This is input Empty');
     }

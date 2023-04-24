@@ -105,7 +105,7 @@ export class PaymentListComponent {
           noDownload: false,
           showTitle: false,
           useBom: false,
-          headers: ["Id","Plan", "User","Amount","Status","Created"]
+          headers: ["Id","Plan", "User First Name","User Last Name","Payment Id","Amount","Status","Created"]
         };
         new ngxCsv(this.data, "Contact list", options);  // download CSV ------
         Swal.fire('SuccessFully !', 'List removed successfully.', 'success');

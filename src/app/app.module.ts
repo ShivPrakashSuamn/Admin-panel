@@ -18,7 +18,6 @@ import { TemplateListComponent } from './template/template-list/template-list.co
 import { TemplateCreateComponent } from './template/template-create/template-create.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UsersCreateComponent } from './users/users-create/users-create.component';
-import { UsersImportComponent } from './users/users-import/users-import.component';
 import { PaymentListComponent } from './payment/payment-list/payment-list.component';
 import { PaymentUpdateComponent } from './payment/payment-update/payment-update.component';
 import { SettingsListComponent } from './settings/settings-list/settings-list.component';
@@ -36,7 +35,6 @@ import { NoPageComponent } from './no-page/no-page.component';
     TemplateCreateComponent,
     UsersListComponent,
     UsersCreateComponent,
-    UsersImportComponent,
     PaymentListComponent,
     PaymentUpdateComponent,
     SettingsListComponent,

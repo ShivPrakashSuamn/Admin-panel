@@ -91,3 +91,19 @@
     width: 55px;
     color: #969b99;
 }
+.pie {
+    margin: 25px;
+    border-radius: 50%;
+    width: 310px;
+    height: 310px;
+    overflow: hidden;
+    background: linear-gradient(-21deg, #02abff 50%, transparent 50%), linear-gradient(to right, #02abff 50%, #9fe1fe 50%);
+  }
+  
+  .html {
+    margin: 60px 0 0 175px;
+  }
+  
+  .css {
+    margin: 118px;
+  }

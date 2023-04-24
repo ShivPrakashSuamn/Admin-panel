@@ -40,7 +40,21 @@
                             <hr>
                             <form class="form" [formGroup]="createForm" (ngSubmit)="submit()"class="mt-4" enctype="multipart/form-data">  	
                                 <div class="row" >
-                                    <div class="col-md-12 p-0">
+                                    <div class="col-md-4 text-center mt-4">
+                                        <div>
+                                            <span *ngIf="getImageName() == 'null' || id == undefined" class="p-0"><img src="../../../assets/images/user1.png" class="card-img-top rounded-circle mb-3" style="width: 160px; height: 155px;;"/></span>
+                                            <span *ngIf="getImageName() != 'null' && id != undefined"><img src="http://localhost:3001/uploads/images/{{getImageName()}}" class="rounded-circle mb-4 show-image"/></span>
+                                            <p class="text-mute">Recommended image size: 150px X 150px</p>
+                                            <div class="form-group imgUpload mx-auto">
+                                                <label for="exampleInputFile">Upload</label>
+                                                <input type="file" id="exampleInputFile" style="display: none;" name="file" (change)="handleFileUpload($event.target)"/>
+                                            </div>
+                                            <div class="blank-box" >
+                                                <span > {{getImageName()}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 p-0">
                                         <h4 class="tex"> Basic information :</h4>
                                         <div class="row mt-3">
                                             <div class="col-md-12">
@@ -53,9 +67,9 @@
                                                 <label for="email" class="tex">Email :</label>
                                                 <input type="email"class="form-control bg-transparent" name="email" placeholder="Enter email" formControlName="email"
                                                     [style.border]="(submitted && f['email'].errors && f['email'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /><br>
-                                                <label for="password" class="tex">Password :</label>
-                                                <input type="password" class="form-control bg-transparent" name="password" formControlName="password" placeholder="Password."
-                                                    [style.border]="(submitted && f['password'].errors && f['password'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /><br>
+                                                <label for="mobile" class="tex">Mobile No :</label>
+                                                <input type="text" class="form-control bg-transparent" name="mobile" formControlName="mobile" placeholder="Mobile No."
+                                                    [style.border]="(submitted && f['mobile'].errors && f['mobile'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /><br>
                                                 <div class="float-end">
                                                     <input type="reset" class="btn cancelbtn" (click)="reset()" value="Cancal" name="cancal">
                                                     <input type="submit" class="btn battcolor" value="SAVE" name="submit">

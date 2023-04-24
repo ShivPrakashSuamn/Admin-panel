@@ -10,7 +10,7 @@
                 <i class="fa fa-bars tex pt-2" style="font-size: 25px; float: left;" [ngClass]="{'Sm1': toggleVal, 'Sm2': !toggleVal}"></i>
             </a>
             <form style="margin-top: 14px;">
-                <input type="text" class="form-control tex " style="border: none;" placeholder="Search...." [(ngModel)]="search" name="search" disabled>
+                <input type="text" class="form-control tex" style="border: none;" placeholder="Search...." [(ngModel)]="search" name="search" disabled style="cursor: no-drop;">
                 <button type="submit" class="tex" (click)="searchVal()">Search</button>
             </form>
         </div>
@@ -47,7 +47,7 @@
                         </ul>
                     </div> -->
                     <div class="btn-group">
-                        <a routerLink="#" class="tex" id="loading" style="margin: 20px; font-size: 25px;" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="javascript:void(0);" class="tex" id="loading" style="margin: 20px; font-size: 25px;" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-cog tex" style="font-size: 25px;"></i>
                         </a>
                         <ul class="dropdown-menu listColor">
