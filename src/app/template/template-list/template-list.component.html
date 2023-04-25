@@ -49,9 +49,7 @@
                                             <tr *ngFor="let row of data">
                                                 <td>{{row.id}}</td>
                                                 <td class="p-1">
-                                                    <img src="../../../assets/images/tmp1.png" class="rounded tableImg" />
-                                                    <!-- <span *ngIf="row.image != 'null'"><img src="http://localhost:3001/uploads/images/{{row.image}}" class="card-img-top rounded-circle mb-3" style="width: 38px; height: 40px;"/></span>
-                                                        <span *ngIf="row.image == 'null'" class="pic_text"><span>{{row.fname.substr(0,1)}}</span></span> -->
+                                                    <span *ngIf="row.image != 'null'"><img src="http://localhost:3001{{row.thumbnail}}" class="rounded tableImg" alt="Thumbnail" /></span>
                                                 </td>
                                                 <td> {{row.title}} </td>
                                                 <td> {{row.description}} </td>
@@ -82,7 +80,7 @@
                                                 <div class="modal-body">
                                                     <div>
                                                         <!-- <td> {{thumbnail}} </td> -->
-                                                        <img src="../../assets/images/tmp1.png" class="rounded imgThumbnail" />
+                                                        <img src="http://localhost:3001{{thumbnail}}" class="rounded imgThumbnail" />
                                                     </div>
                                                     <table class="table ">
                                                         <tr>

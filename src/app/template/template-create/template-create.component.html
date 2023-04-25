@@ -42,12 +42,12 @@
                                 <div class="row" >
                                     <div class="col-md-4">
                                         <h4 class="tex"> Template file :</h4>
-                                        <div class="blank-box text-center mt-4"  [style.border]="(submitted && f['tempfile'].errors && f['tempfile'].errors['required'])==true ? '#ff00e29e dotted' :'#d5d7d6 dotted'">
-                                            <i [ngStyle]="{'color':uploadClock? '#1caa028a' : '#b6b6b6d9'}" class='bx bx-desktop nav_icon ' style="font-size: 100px;"></i>
+                                        <div class="blank-box text-center mt-4">
+                                            <i class='bx bx-desktop nav_icon ' style="font-size: 100px; color: #b6b6b6d9;"></i>
                                             <p class="text-mute">Drag to Drop files here to Upload or</p>
                                             <div class="form-group imgUpload mx-auto edit">
                                                 <label for="exampleInputFile">Seletct File To Upload</label>
-                                                <input type="file" id="exampleInputFile" style="display: none;" name="tempfile" formControlName="tempfile" accept=".zip" (change)="handleFileUpload($event.target)"/>
+                                                <input type="file" id="exampleInputFile" style="display: none;" name="tempfile" accept=".zip" (change)="handleFileUpload($event.target)"/>
                                             </div>
                                         </div>
                                         <div class="tex text-center">
@@ -60,14 +60,13 @@
                                         <h4 class="tex"> Basic information :</h4>
                                         <div class="row mt-3">
                                             <div class="col-md-12">
+                                                
                                                 <label for="category" class="tex"> Category :</label>
-                                                <select formcontrolname="category" name="category" class="form-select bg-transparent" ng-reflect-name="category" >
-                                                    <option> Select Category</option>
-                                                    <option value="morning">Morning Time</option>
-                                                    <option value="yoga">Yoga</option>
-                                                    <option value="travels">Travels</option>
-                                                    <option value="study">Study</option>
+                                                <select class="form-select bg-transparent"  name="category" #category (change)="selectOption(category.value)" > 
+                                                    <option default>Select Category</option>
+                                                    <option *ngFor="let rowData of categoryData" value="{{rowData}}"> {{rowData}}</option> 
                                                 </select><br>
+
                                                 <label for="title" class="tex"> Title :</label>
                                                 <input type="text" class="form-control bg-transparent" name="title" placeholder="Enter Title" formControlName="title"
                                                     [style.border]="(submitted && f['title'].errors && f['title'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /><br>

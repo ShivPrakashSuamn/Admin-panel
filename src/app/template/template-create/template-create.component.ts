@@ -17,20 +17,20 @@ export class TemplateCreateComponent {
   id: any = undefined;
   img: any;
   temFile:any;
-  uploadClock:any = false;
-
+  categoryData:string = '';
+  category:any = '';
   // ----------------    life cycle of angular    --------------------  ||
 
   constructor(private fb: FormBuilder, private alertService: AlertService, private route: ActivatedRoute, private apiService: ApiService) {
     this.createForm = fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      tempfile: ['', Validators.required],
     });
   }
 
   ngOnInit() {        //  ngOninit Function -------------------------
     this.id = this.route.snapshot.params['id'];
+    this.getCategory();
     if (this.id != undefined) {
       console.log('Update id =', this.id)
       this.getData();
@@ -47,6 +47,10 @@ export class TemplateCreateComponent {
     this.temFile = target.files[0];
   }
 
+  selectOption(target:any) {     // Get catagory    ----------------
+   this.category = target;
+  }
+
   submit() {    // Submit Form    -----------------------------------
     console.log('Submit Button Click');
     this.submitted = true;
@@ -56,8 +60,9 @@ export class TemplateCreateComponent {
         url = `/template/update?id=${this.id}`; 
       }
       const body = this.createForm.value;
+      console.log('===',body)
       let formData: FormData = new FormData();
-      formData.append('category', body.category)
+      formData.append('category', this.category)
       formData.append('title', body.title)
       formData.append('description', body.description)
       if(this.id == undefined){
@@ -77,7 +82,7 @@ export class TemplateCreateComponent {
       headers.append('Content-Type', 'multipart/form-data');
       headers.append('Accept', 'application/json');
       let options = { headers: headers };
-
+   console.log('dtat--',formData)
       this.apiService.post(url, formData, options).subscribe((data: any) => {
         console.log('Form Result -', data)
       });
@@ -87,20 +92,11 @@ export class TemplateCreateComponent {
     }
   }
 
-  sidebarToggle(eventData: { toggleVal: boolean }) { //Sidebar manage 
-    this.toggleVal = eventData.toggleVal;
-    console.log('profile page inside sidebar toggle', eventData.toggleVal);
-  }
-
-  reset() {           // Form  reset  --------------------------------
-    this.createForm.reset();
-  }
-
   getData() {          // Upadte data get end input fill  ------------
     let url: string = `/template/show?id=${this.id}`;
     this.apiService.get(url , {}).subscribe((data: any) => {
       if (data && data.status) {
-        let userData = data.data[0];
+        let userData = data.data.data[0];
         this.createForm = this.fb.group({
           category: [`${userData.category}`, Validators.required],
           title: [`${userData.title}`, Validators.required],
@@ -112,14 +108,31 @@ export class TemplateCreateComponent {
     });
   }
 
+  getCategory() {      //  get Category      ------------------------
+    let url: string = `/template/category`;
+    this.apiService.get(url , {}).subscribe((data: any) => {
+      if(data && data.status){
+        this.categoryData = data.data; 
+      }else{
+        this.alertService.error(data.message);  // data.message -----
+      }
+    });
+  }
+
   getImageName() {     // Selecte image name -------------------------
-    if(this.createForm.value.tempfile) {
-      this.uploadClock = true;
+    if(this.temFile) {
       return this.temFile.name;
-    } else if(this.id){
-      return 'Can Not Change File';
-    } else {
+    }  else {
       return 'Selete to File upload above ?';
     }
+  }
+  
+  sidebarToggle(eventData: { toggleVal: boolean }) { //Sidebar manage 
+    this.toggleVal = eventData.toggleVal;
+    console.log('profile page inside sidebar toggle', eventData.toggleVal);
+  }
+
+  reset() {           // Form  reset  --------------------------------
+    this.createForm.reset();
   }
 }

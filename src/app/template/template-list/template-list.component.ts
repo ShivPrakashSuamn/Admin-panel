@@ -18,7 +18,6 @@ export class TemplateListComponent {
   order_type:any = 'desc';
   toggleVal:boolean = false;
   data:any=[];
-  delete:any;
 
   title:any ;
   thumbnail:any;
@@ -76,11 +75,12 @@ export class TemplateListComponent {
     let url = '/template/show?id='+id;
     this.apiService.get(url, {}).subscribe((data:any) => {
       if(data && data.status){
-        this.title = data.data[0].title;
-        this.thumbnail = data.data[0].thumbnail;
-        this.description = data.data[0].description;
-        this.category = data.data[0].category;
-        this.created = data.data[0].created;
+        var rowData = data.data.data[0];
+        this.title = rowData.title;
+        this.thumbnail = rowData.thumbnail;
+        this.description = rowData.description;
+        this.category = rowData.category;
+        this.created = rowData.created;
       } else {
         this.alertService.error(data.message);
       }
