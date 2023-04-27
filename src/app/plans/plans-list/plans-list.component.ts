@@ -19,13 +19,14 @@ export class PlansListComponent {
   toggleVal:boolean = false;
   data:any=[];
   delete:any;
-  admin_id:string = '';
+
   title:string = '';
   price:string = '';
   offer_price:string = '';
   total_sell:string = '';
   status:string = '';
   Create_Data:string = '';
+  totalFeature:String = '';
 
   // ---------------------    life cycle of angular    --------------------  ||
 
@@ -108,14 +109,16 @@ export class PlansListComponent {
     console.log('Show id =', id);
     let url:string = `/plans/show?id=${id}`;
     this.apiService.get(url , {}).subscribe((data:any) => {
+      let planData = data.data.data[0];
+      let categoryData = data.data.category.length;
       if(data && data.status){
-        this.admin_id = data.data[0].admin_id;
-        this.title = data.data[0].title;
-        this.price = data.data[0].price;
-        this.offer_price = data.data[0].offer_price;
-        this.total_sell = data.data[0].total_sell;
-        this.status = data.data[0].status;
-        this.Create_Data = data.data[0].created;
+        this.title = planData.title;
+        this.price = planData.price;
+        this.offer_price = planData.offer_price;
+        this.total_sell = planData.total_sell;
+        this.status = planData.status;
+        this.Create_Data = planData.created;
+        this.totalFeature = categoryData;
       }else{
         this.alertService.error('Data Fatch Failed..');  // data.message -----
       }

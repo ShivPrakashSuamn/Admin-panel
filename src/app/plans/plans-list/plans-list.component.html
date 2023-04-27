@@ -77,16 +77,20 @@
                                                 <div class="modal-body">
                                                     <table class="table ">
                                                         <tr>
-                                                            <th> Admin id :</th>
-                                                            <td> {{admin_id}}</td>
+                                                            <th> Total Features :</th>
+                                                            <td> {{totalFeature}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th> Price :</th>
                                                             <td> {{price | currency:'INR'}}</td>
                                                         </tr>
                                                         <tr>
+                                                            <th> Offer Price :</th>
+                                                            <td> {{offer_price | percent}}</td>
+                                                        </tr>
+                                                        <tr>
                                                             <th> Total Sell :</th>
-                                                            <td> {{total_sell  | percent }}</td>
+                                                            <td> {{total_sell }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th> Status :</th>                                            

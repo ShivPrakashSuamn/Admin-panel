@@ -100,7 +100,7 @@ export class PlansCreateComponent {
         } else {
           this.alertService.warning(data.message); // Alert---
         }
-      })
+      });
     } else {
       this.alertService.error('This is input Empty');
     }
@@ -111,22 +111,6 @@ export class PlansCreateComponent {
     this.apiService.get(url, {}).subscribe((data: any) => {
       if (data && data.status) {
         let planData = data.data.data[0];
-
-        // let cateGory = data.data.category;
-        // for (var i = 0; i < cateGory.lenght; i++) {
-        //   this.addRow();
-        //   var feature_name = cateGory[i]["feature_name"],
-        //     feature_value = cateGory[i]["feature_value"]
-        //   this.form = new FormGroup({
-        //     passenger: new FormArray([
-        //       new FormGroup({
-        //         feature_name: new FormControl(`${feature_name}`),
-        //         feature_value: new FormControl(`${feature_value}`)
-        //       })
-        //     ])
-        //   });
-        // }
-
         this.createForm = this.fb.group({
           admin_id: [`${planData.admin_id}`, Validators.required],
           title: [`${planData.title}`, Validators.required],
@@ -135,6 +119,42 @@ export class PlansCreateComponent {
           total_sell: [`${planData.total_sell}`, Validators.required],
           status: [`${planData.status}`, Validators.required],
         });
+
+        let cateGory = data.data.category;
+        let i = 0;
+  
+        while (cateGory[i]) {
+          var text1 = cateGory[i].feature_name;
+          var text2 = cateGory[i].feature_value;
+          console.log('--', i)
+          this.form = new FormGroup({
+            passenger: new FormArray([
+              new FormGroup({
+                feature_name: new FormControl(text1),
+                feature_value: new FormControl(text2)
+              })
+            ])
+          });
+          if (i > 0) {
+            this.addRow();
+          }
+          i++;
+        }
+
+        // for (var i = 0; i < cateGory.length; i++) {
+        //     console.log('feature name --', cateGory[i]["feature_name"])
+        //     var feature_name = cateGory[i]["feature_name"],
+        //       feature_value = cateGory[i]["feature_value"]
+        //     this.form = new FormGroup({
+        //       passenger: new FormArray([
+        //         new FormGroup({
+        //           feature_name: new FormControl(`${feature_name}`),
+        //           feature_value: new FormControl(`${feature_value}`)
+        //         })
+        //       ])
+        //     });
+        // }
+
       } else {
         this.alertService.error('Data Fatch Failed..');  // data.message -----
       }
@@ -148,5 +168,6 @@ export class PlansCreateComponent {
 
   reset() {           // Form  reset  --------------------------------
     this.createForm.reset();
+    this.form.reset();
   }
 }
