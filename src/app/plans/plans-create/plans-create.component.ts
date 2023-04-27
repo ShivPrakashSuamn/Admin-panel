@@ -122,39 +122,20 @@ export class PlansCreateComponent {
 
         let cateGory = data.data.category;
         let i = 0;
-  
         while (cateGory[i]) {
+          if (i > 0) {
+            this.deleteRow(0);
+          }
           var text1 = cateGory[i].feature_name;
           var text2 = cateGory[i].feature_value;
-          console.log('--', i)
-          this.form = new FormGroup({
-            passenger: new FormArray([
-              new FormGroup({
-                feature_name: new FormControl(text1),
-                feature_value: new FormControl(text2)
-              })
-            ])
-          });
-          if (i > 0) {
-            this.addRow();
-          }
+          this.passenger.push(
+            new FormGroup({
+              feature_name: new FormControl(text1),
+              feature_value: new FormControl(text2)
+            })
+          );
           i++;
         }
-
-        // for (var i = 0; i < cateGory.length; i++) {
-        //     console.log('feature name --', cateGory[i]["feature_name"])
-        //     var feature_name = cateGory[i]["feature_name"],
-        //       feature_value = cateGory[i]["feature_value"]
-        //     this.form = new FormGroup({
-        //       passenger: new FormArray([
-        //         new FormGroup({
-        //           feature_name: new FormControl(`${feature_name}`),
-        //           feature_value: new FormControl(`${feature_value}`)
-        //         })
-        //       ])
-        //     });
-        // }
-
       } else {
         this.alertService.error('Data Fatch Failed..');  // data.message -----
       }
