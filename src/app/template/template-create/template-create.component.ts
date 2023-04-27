@@ -15,16 +15,16 @@ export class TemplateCreateComponent {
   submitted: any = false;
   data: any = [];
   id: any = undefined;
-  img: any;
-  temFile:any;
-  categoryData:string = '';
-  category:any = '';
+  temFile: any;
+  categoryData: string = '';
+
   // ----------------    life cycle of angular    --------------------  ||
 
   constructor(private fb: FormBuilder, private alertService: AlertService, private route: ActivatedRoute, private apiService: ApiService) {
     this.createForm = fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
+      category: ['', Validators.required],
     });
   }
 
@@ -43,12 +43,8 @@ export class TemplateCreateComponent {
 
   // ----------------    custome methods   --------------------------  ||
 
-  handleFileUpload(target:any){  // iamge handle    ----------------
+  handleFileUpload(target: any) {  // iamge handle    ----------------
     this.temFile = target.files[0];
-  }
-
-  selectOption(target:any) {     // Get catagory    ----------------
-   this.category = target;
   }
 
   submit() {    // Submit Form    -----------------------------------
@@ -56,25 +52,24 @@ export class TemplateCreateComponent {
     this.submitted = true;
     if (this.createForm.valid) {
       let url: string = `/template/store`;
-      if(this.id){
-        url = `/template/update?id=${this.id}`; 
+      if (this.id) {
+        url = `/template/update?id=${this.id}`;
       }
       const body = this.createForm.value;
-      console.log('===',body)
       let formData: FormData = new FormData();
-      formData.append('category', this.category)
+      formData.append('category', body.category)
       formData.append('title', body.title)
       formData.append('description', body.description)
-      if(this.id == undefined){
-        if(this.temFile){
-          formData.append('file', this.temFile,this.temFile.name);
+      if (this.id == undefined) {
+        if (this.temFile) {
+          formData.append('file', this.temFile, this.temFile.name);
         } else {
           formData.delete('file');
         }
-      }else if (this.id != ''){
-        if(this.temFile){
-          formData.append('file', this.temFile,this.temFile.name);
-        }else{
+      } else if (this.id != '') {
+        if (this.temFile) {
+          formData.append('file', this.temFile, this.temFile.name);
+        } else {
           formData.delete('file');
         }
       }
@@ -82,11 +77,14 @@ export class TemplateCreateComponent {
       headers.append('Content-Type', 'multipart/form-data');
       headers.append('Accept', 'application/json');
       let options = { headers: headers };
-   console.log('dtat--',formData)
       this.apiService.post(url, formData, options).subscribe((data: any) => {
-        console.log('Form Result -', data)
+        console.log('Form Result -', data);
+        if (data.status) {
+          this.alertService.success(data.message); // Alert---
+        } else {
+          this.alertService.warning(data.message); // Alert---
+        }
       });
-      this.alertService.success('Data Save SuccessFull'); // Alert---
     } else {
       this.alertService.error('This is input Empty');
     }
@@ -94,7 +92,7 @@ export class TemplateCreateComponent {
 
   getData() {          // Upadte data get end input fill  ------------
     let url: string = `/template/show?id=${this.id}`;
-    this.apiService.get(url , {}).subscribe((data: any) => {
+    this.apiService.get(url, {}).subscribe((data: any) => {
       if (data && data.status) {
         let userData = data.data.data[0];
         this.createForm = this.fb.group({
@@ -109,24 +107,24 @@ export class TemplateCreateComponent {
   }
 
   getCategory() {      //  get Category      ------------------------
-    let url: string = `/template/category`;
-    this.apiService.get(url , {}).subscribe((data: any) => {
-      if(data && data.status){
-        this.categoryData = data.data; 
-      }else{
+    let url: string = `/setting/TEMPLATE_CATEGORY`;
+    this.apiService.get(url, {}).subscribe((data: any) => {
+      if (data && data.status) {
+        this.categoryData = data.data;
+      } else {
         this.alertService.error(data.message);  // data.message -----
       }
     });
   }
 
   getImageName() {     // Selecte image name -------------------------
-    if(this.temFile) {
+    if (this.temFile) {
       return this.temFile.name;
-    }  else {
+    } else {
       return 'Selete to File upload above ?';
     }
   }
-  
+
   sidebarToggle(eventData: { toggleVal: boolean }) { //Sidebar manage 
     this.toggleVal = eventData.toggleVal;
     console.log('profile page inside sidebar toggle', eventData.toggleVal);

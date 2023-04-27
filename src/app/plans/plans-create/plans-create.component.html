@@ -61,16 +61,16 @@
                                                     <thead style="background: #dee2e6f0;">
                                                         <tr class="tex">
                                                             <th scope="col">#</th>
-                                                            <th scope="col">Title</th>
-                                                            <th scope="col">Value</th>
+                                                            <th scope="col">Feature Name</th>
+                                                            <th scope="col">Feature Value</th>
                                                             <th scope="col">Remove</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr *ngFor="let passengerGroup of passenger?.controls; let i = index" [formGroupName]="i">
                                                             <th class="tex">{{i + 1}}</th>
-                                                            <td><input type="text"class="form-control bg-transparent" formControlName="title" placeholder="Title" /></td>
-                                                            <td><input type="text"class="form-control bg-transparent" formControlName="value" placeholder="Value" /></td>
+                                                            <td><input type="text"class="form-control bg-transparent" formControlName="feature_name" placeholder="Feature Name" /></td>
+                                                            <td><input type="text"class="form-control bg-transparent" formControlName="feature_value" placeholder="Feature Value" /></td>
                                                             <td><button type="button" class="btn btn-danger" (click)="deleteRow(i)" >&times;</button></td>
                                                         </tr>
                                                         <tr>

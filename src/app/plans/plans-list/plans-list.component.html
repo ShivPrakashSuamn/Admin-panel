@@ -89,8 +89,9 @@
                                                             <td> {{total_sell  | percent }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th> Status :</th>
-                                                            <td> {{status}}</td>
+                                                            <th> Status :</th>                                            
+                                                            <td *ngIf="status == '1'">Active</td> 
+                                                            <td *ngIf="status == '0'">In-Active</td> 
                                                         </tr>
                                                         <tr>
                                                             <th> Create Data :</th>

@@ -62,9 +62,10 @@
                                             <div class="col-md-12">
                                                 
                                                 <label for="category" class="tex"> Category :</label>
-                                                <select class="form-select bg-transparent"  name="category" #category (change)="selectOption(category.value)" > 
-                                                    <option default>Select Category</option>
-                                                    <option *ngFor="let rowData of categoryData" value="{{rowData}}"> {{rowData}}</option> 
+                                                <select class="form-select bg-transparent"  name="category" #category formControlName="category" title="Select Category"
+                                                    [style.border]="(submitted && f['category'].errors && f['category'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" > 
+                                                    <option value="">Select Category</option>
+                                                    <option *ngFor="let rowData of categoryData" value="{{rowData}}" [selected]="category.value == rowData"> {{rowData}}</option> 
                                                 </select><br>
 
                                                 <label for="title" class="tex"> Title :</label>

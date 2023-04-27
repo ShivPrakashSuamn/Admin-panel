@@ -39,7 +39,7 @@ export class UsersListComponent {
   getData() {           //  Data Get databes   ---------------------------------
     let url:string = `/user?limit=${this.limit}&page=${this.page}&order_by=${this.order_by}&order_type=${this.order_type}&search=${this.search}`;
     this.apiService.get(url , {}).subscribe((data:any) => {
-       console.log('data',data.data.data);
+      // console.log('data',data.data.data);
         if(data && data.status){
           this.page = data.data.page;
           this.data = data.data.data; 

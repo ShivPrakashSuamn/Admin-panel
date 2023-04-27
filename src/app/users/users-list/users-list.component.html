@@ -84,7 +84,7 @@
                                                                 <th>Name : </th>
                                                                 <td> {{fname}} {{lname}}</td>
                                                                 <td rowspan="4" class="p-0">
-                                                                    <span *ngIf="image != 'null'"><img src="http://localhost:3001/uploads/images/{{image}}" class="rounded-circle p-0 show-image"/></span>
+                                                                    <span *ngIf="image != 'null' && image"><img src="http://localhost:3001/uploads/images/{{image}}" class="rounded-circle p-0 show-image"/></span>
                                                                     <span *ngIf="image == 'null'" class="p-0"><div class="text-image tex"><b style="font-size: 70px;">{{fname.substr(0,1)}}</b></div></span>
                                                                 </td>
                                                             </tr>

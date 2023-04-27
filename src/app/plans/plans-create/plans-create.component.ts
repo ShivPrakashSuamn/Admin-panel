@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl,FormArray} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { AlertService } from 'src/app/_services/alert.service';
 import { ApiService } from 'src/app/_services/api.service';
 import { ActivatedRoute } from '@angular/router'
@@ -13,15 +13,15 @@ export class PlansCreateComponent {
   toggleVal: boolean = false;
   createForm: FormGroup;
   submitted: any = false;
-  id:any = '';
-  admin_id:any = '';
-  title:any = '';
-  price:any = '';
-  offer_price:any = '';
-  total_sell:any = '';
-  status:any = '';
+  id: any = '';
+  admin_id: any = '';
+  title: any = '';
+  price: any = '';
+  offer_price: any = '';
+  total_sell: any = '';
+  status: any = '';
   form: FormGroup;
-  isShow:any=false;
+  isShow: any = false;
   // ----------------    life cycle of angular    --------------------  ||
 
   constructor(private fb: FormBuilder, private alertService: AlertService, private route: ActivatedRoute, private apiService: ApiService) {
@@ -34,8 +34,8 @@ export class PlansCreateComponent {
     this.form = new FormGroup({
       passenger: new FormArray([
         new FormGroup({
-          title: new FormControl(''),
-          value: new FormControl('')
+          feature_name: new FormControl(''),
+          feature_value: new FormControl('')
         })
       ])
     });
@@ -43,7 +43,10 @@ export class PlansCreateComponent {
 
   ngOnInit() {        //  ngOninit Function -------------------------
     this.id = this.route.snapshot.params['id'];
-    if(this.id){
+    if (this.id == undefined) {
+      this.showTable();
+    }
+    if (this.id) {
       this.updateDataGet();
     }
   }
@@ -61,18 +64,18 @@ export class PlansCreateComponent {
   addRow() {
     this.passenger.push(
       new FormGroup({
-        title: new FormControl(''),
-        value: new FormControl('')
+        feature_name: new FormControl(''),
+        feature_value: new FormControl('')
       })
     );
   }
 
-  deleteRow(id:any){
+  deleteRow(id: any) {
     this.passenger.removeAt(id)
-  } 
- 
-  showTable(){    // features table   --------------------------------
-    this.isShow = !this.isShow; 
+  }
+
+  showTable() {    // features table   --------------------------------
+    this.isShow = !this.isShow;
   }
 
 
@@ -84,30 +87,46 @@ export class PlansCreateComponent {
 
       var body = this.createForm.value;
       body.features = this.form.value.passenger;
-      console.log('body',body)
-      let url:string = '/plans/store';
-      if(this.id){
-        url = `/plans/update?id=${this.id}`; 
+      console.log('body', body)
+      let url: string = '/plans/store';
+      if (this.id) {
+        url = `/plans/update?id=${this.id}`;
       }
 
-      // this.apiService.post(url, body, {}).subscribe((data:any)=>{
-      //   console.log('form result -', data);
-      //   if(data.status){
-      //     this.alertService.success(data.message); // Alert---
-      //   } else {
-      //     this.alertService.warning(data.message); // Alert---
-      //   }
-      // })
+      this.apiService.post(url, body, {}).subscribe((data: any) => {
+        console.log('form result -', data);
+        if (data.status) {
+          this.alertService.success(data.message); // Alert---
+        } else {
+          this.alertService.warning(data.message); // Alert---
+        }
+      })
     } else {
       this.alertService.error('This is input Empty');
     }
   }
 
   updateDataGet() {  //  Update Data Get   ------------------------------
-    let url:string = `/plans/show?id=${this.id}`;
-    this.apiService.get(url, {}).subscribe((data:any)=>{
+    let url: string = `/plans/show?id=${this.id}`;
+    this.apiService.get(url, {}).subscribe((data: any) => {
       if (data && data.status) {
-        let planData = data.data[0];
+        let planData = data.data.data[0];
+
+        // let cateGory = data.data.category;
+        // for (var i = 0; i < cateGory.lenght; i++) {
+        //   this.addRow();
+        //   var feature_name = cateGory[i]["feature_name"],
+        //     feature_value = cateGory[i]["feature_value"]
+        //   this.form = new FormGroup({
+        //     passenger: new FormArray([
+        //       new FormGroup({
+        //         feature_name: new FormControl(`${feature_name}`),
+        //         feature_value: new FormControl(`${feature_value}`)
+        //       })
+        //     ])
+        //   });
+        // }
+
         this.createForm = this.fb.group({
           admin_id: [`${planData.admin_id}`, Validators.required],
           title: [`${planData.title}`, Validators.required],

@@ -42,8 +42,8 @@
                                 <div class="row" >
                                     <div class="col-md-4 text-center mt-4">
                                         <div>
-                                            <span *ngIf="getImageName() == 'null' || id == undefined" class="p-0"><img src="../../../assets/images/user1.png" class="card-img-top rounded-circle mb-3" style="width: 160px; height: 155px;;"/></span>
-                                            <span *ngIf="getImageName() != 'null' && id != undefined"><img src="http://localhost:3001/uploads/images/{{getImageName()}}" class="rounded-circle mb-4 show-image"/></span>
+                                            <span *ngIf="id == undefined || img == 'null'" class="p-0"><img src="../../../assets/images/user1.png" class="card-img-top rounded-circle mb-3" style="width: 160px; height: 155px;;"/></span>
+                                            <span *ngIf="img && img != 'null'"><img src="http://localhost:3001/uploads/images/{{getImageName()}}" class="rounded-circle mb-4 show-image"/></span>
                                             <p class="text-mute">Recommended image size: 150px X 150px</p>
                                             <div class="form-group imgUpload mx-auto">
                                                 <label for="exampleInputFile">Upload</label>
