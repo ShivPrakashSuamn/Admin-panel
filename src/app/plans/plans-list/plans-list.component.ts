@@ -110,7 +110,6 @@ export class PlansListComponent {
     let url:string = `/plans/show?id=${id}`;
     this.apiService.get(url , {}).subscribe((data:any) => {
       let planData = data.data.data[0];
-      let categoryData = data.data.category.length;
       if(data && data.status){
         this.title = planData.title;
         this.price = planData.price;
@@ -118,7 +117,7 @@ export class PlansListComponent {
         this.total_sell = planData.total_sell;
         this.status = planData.status;
         this.Create_Data = planData.created;
-        this.totalFeature = categoryData;
+        this.totalFeature = planData.total_features;
       }else{
         this.alertService.error('Data Fatch Failed..');  // data.message -----
       }

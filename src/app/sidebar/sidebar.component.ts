@@ -15,6 +15,7 @@ export class SidebarComponent {
   mail_opne:any;
   @Output() sidebarToggle = new EventEmitter<{ toggleVal: boolean }>(); // event emitter
   @Output() emailOpne = new EventEmitter<{ emailval: boolean }>(); // event emitter
+  
 
     // ------------------    life cycle of angular    ----------------------- ||
 
