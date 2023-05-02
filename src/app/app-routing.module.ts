@@ -13,6 +13,7 @@ import { PaymentUpdateComponent } from './payment/payment-update/payment-update.
 import { SettingsListComponent } from './settings/settings-list/settings-list.component';
 import { SettingsUpdateComponent } from './settings/settings-update/settings-update.component';
 import { NoPageComponent } from './no-page/no-page.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 const routes: Routes = [
   {path: 'sidebar', component: SidebarComponent},
@@ -29,8 +30,10 @@ const routes: Routes = [
   {path: 'payment', component: PaymentListComponent},
     {path: 'payment/update/:id', component: PaymentUpdateComponent},
   {path: 'setting', component: SettingsListComponent},
+    {path: 'setting/create', component: SettingsUpdateComponent},
     {path: 'setting/update/:id', component: SettingsUpdateComponent},
-
+  {path: 'pagination', component:PaginationComponent},
+  
   {path: '**', component: NoPageComponent},
 ];
 

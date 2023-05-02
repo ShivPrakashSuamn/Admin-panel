@@ -1,0 +1,18 @@
+.edit{
+    border: none;
+    background:linear-gradient(315deg,#e91e63,#5d02ff) ;
+    color:white;
+}
+.edit:hover{
+    background:linear-gradient(315deg,#5d02ff,#e91e63) ;
+}
+.edit:hover:active{
+    color: rgba(255, 255, 255, 0.521);
+    background:linear-gradient(315deg,#e91e6271,#5f02ff8c) ;
+}
+.tex{
+    background:linear-gradient(315deg,#e91e63,#5d02ff) ;
+    display: inline-block;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

@@ -107,7 +107,7 @@ export class TemplateCreateComponent {
   }
 
   getCategory() {      //  get Category      ------------------------
-    let url: string = `/setting/TEMPLATE_CATEGORY`;
+    let url: string = `/setting/constant/TEMPLATE_CATEGORY`;
     this.apiService.get(url, {}).subscribe((data: any) => {
       if (data && data.status) {
         this.categoryData = data.data;

@@ -20,6 +20,11 @@ export class SettingsListComponent {
   order_type:any = 'desc';
   userCount:any = '';
 
+  key:String = '';
+  value:String = '';
+  type:String = '';
+  created:any = '';
+
   // ---------------------    life cycle of angular    --------------------  ||
 
   constructor(private apiService:ApiService,private alertService:AlertService){
@@ -32,18 +37,18 @@ export class SettingsListComponent {
 
   // ---------------------      custome methods      -----------------------  ||
   
-  getData(){            //  Get data databes   -------------------------------- 
-    let url = `/setting?limit=${this.limit}&page=${this.page}&order_by=${this.order_by}&order_type=${this.order_type}&search=${this.search}`;
-    this.apiService.get(url , {}).subscribe((data:any)=>{
-      if(data && data.status){
-        this.data = data.data.data; 
-        this.page = data.data.page;
-        this.totalRows = data.data.total;
-        this.userCount = data.data.allUser;
-      } else {
-        this.alertService.error('Data Fatch Failed..');  // data.message -----
+  getData() {           //  Data Get databes   ---------------------------------
+    let url:string = `/setting?limit=${this.limit}&page=${this.page}&order_by=${this.order_by}&order_type=${this.order_type}&search=${this.search}`;
+    this.apiService.get(url, {}).subscribe((data:any) => {
+        if(data && data.status){
+          this.page = data.data.page;
+          this.data = data.data.data; 
+          this.totalRows = data.data.total;
+        }else{
+          this.alertService.error(data.message);  // data.message -----
+        }
       }
-    });
+    );
   }
 
   getTOFROM(){          //  pagination List  offset  ----------------------------
@@ -61,6 +66,21 @@ export class SettingsListComponent {
       this.order_type = 'asc';
     }
     this.getData(); 
+  }
+
+  showRow(id:any) {     //  Display one line of Data  --------------------------
+    let url = '/setting/show?id='+id;
+    this.apiService.get(url, {}).subscribe((data:any) => {
+      if(data && data.status){
+        var rowData = data.data[0];
+        this.key = rowData.key;
+        this.value = rowData.value;
+        this.type = rowData.type;
+        this.created = rowData.created;
+      } else {
+        this.alertService.error(data.message);
+      }
+    });
   }
 
   deleteRow(id:any) {   //  Delete Row Function     ----------------------------
@@ -82,35 +102,6 @@ export class SettingsListComponent {
         });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire('Cancelled', 'Row still in our database.', 'error');
-      }
-    });
-  }
-
-  exportList() {        //  Export All Data in list   -------------------------- 
-    Swal.fire({
-      title: 'Export List !',
-      text: 'SAVE thi whole list in CSV file',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, go ahead.',
-      cancelButtonText: 'No, let me think',
-    }).then((result) => {
-      if (result.value) {
-        console.log('CSV file download');
-        var options = { 
-          title: 'Your title',
-          fieldSeparator: ',',
-          quoteStrings: '"',
-          decimalseparator: '.',
-          showLabels: false, 
-          noDownload: false,
-          showTitle: false,
-          useBom: false,
-          headers: ["Id","Plan Id", "User Id","Payment Id","Amount","Status","Created"]
-        };
-        new ngxCsv(this.data, "Contact list", options);  // download CSV ------
-        Swal.fire('SuccessFully !', 'List removed successfully.', 'success');
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelled', 'List  still in our database.', 'error');
       }
     });
   }

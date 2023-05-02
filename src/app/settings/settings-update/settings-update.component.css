@@ -1,0 +1,82 @@
+.card1{
+    width: 100%;
+    margin-top: 100px;
+    font-family: 'Poppins', sans-serif;
+    padding-left: 1px;
+  }
+  .edit{
+      background:linear-gradient(315deg,#e91e63,#5d02ff) ;
+      color:white;
+      border: none;
+  }
+  .edit:hover{
+      background:linear-gradient(315deg,#5d02ff,#e91e63) ;
+  }
+  .edit:hover:active{
+      color: rgba(255, 255, 255, 0.521);
+      background:linear-gradient(315deg,#e91e6271,#5f02ff8c) ;
+  }
+  .tex{
+      background:linear-gradient(315deg,#e91e63,#5d02ff) ;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+  }
+  .icn{
+      font-size: 16px;
+      padding: 8px 30px;
+  }
+  .icn i {
+      font-size: 15px;
+      padding-right: 8px;
+  }
+  .battcolor{
+      border: 1px solid #ff3382;
+      color: #6404f4;
+      font-size: 15px;
+      padding: 8px 20px;
+  }
+  .blank-box {
+    background: #d8d8d836;
+    height: auto;
+    border-radius: 10px;
+    padding: 20px;
+    border: 2px dotted #6f6b6b;
+  }
+  h1 { font-size:55px; }
+  
+  .t_row a {
+      font-size: 26px;
+      text-decoration: none;
+  }
+  
+  .t_row a i{
+      margin-right: 15px;
+      font-size: 21px;
+    }
+    .dropbutton{
+      border: 1px solid #da1b72b0;
+      padding: 6px 20px;
+      color: #761aff;
+      margin: 0px 8px;
+    }
+    .text-mute {
+      color: #b6b6b6d9;
+      margin: 0;
+    }
+    .imgUpload{
+      width: 70%;
+      padding: 8px;
+      border-radius: 5px;
+      margin-top: 15px;
+    }
+    .cancelbtn{
+      border: 1px solid #ff3382a1;
+      color: #6404f48f;
+      margin-right: 15px;
+      padding: 8px 22px;
+    }
+    .battcolor{
+      border: 1px solid #ff3382;
+      color: #6404f4;
+      padding: 9px 30px;
+  }

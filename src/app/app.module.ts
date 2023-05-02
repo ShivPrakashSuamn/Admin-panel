@@ -23,6 +23,7 @@ import { PaymentUpdateComponent } from './payment/payment-update/payment-update.
 import { SettingsListComponent } from './settings/settings-list/settings-list.component';
 import { SettingsUpdateComponent } from './settings/settings-update/settings-update.component';
 import { NoPageComponent } from './no-page/no-page.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NoPageComponent } from './no-page/no-page.component';
     PaymentUpdateComponent,
     SettingsListComponent,
     SettingsUpdateComponent,
-    NoPageComponent
+    NoPageComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

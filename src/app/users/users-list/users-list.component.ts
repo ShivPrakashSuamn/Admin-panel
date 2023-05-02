@@ -3,7 +3,6 @@ import { ApiService } from 'src/app/_services/api.service';
 import { AlertService } from 'src/app/_services/alert.service';
 import Swal from 'sweetalert2';
 import { ngxCsv } from 'ngx-csv/ngx-csv';
-
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
@@ -12,7 +11,7 @@ import { ngxCsv } from 'ngx-csv/ngx-csv';
 export class UsersListComponent {
   search:any='';
   limit:any = 10;
-  page:any = 1;
+  page:number = 4;
   totalRows:any = 0;
   order_by:any = 'id'; 
   order_type:any = 'desc';
@@ -39,8 +38,8 @@ export class UsersListComponent {
   getData() {           //  Data Get databes   ---------------------------------
     let url:string = `/user?limit=${this.limit}&page=${this.page}&order_by=${this.order_by}&order_type=${this.order_type}&search=${this.search}`;
     this.apiService.get(url , {}).subscribe((data:any) => {
-      // console.log('data',data.data.data);
-        if(data && data.status){
+      if(data && data.status){
+        this.limit = data.data.limit;
           this.page = data.data.page;
           this.data = data.data.data; 
           this.totalRows = data.data.total;
