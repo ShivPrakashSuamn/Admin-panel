@@ -10,13 +10,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PaginationComponent {
 
-  @Input() limit:Number = 0;
+  @Input() totalPages = '';
+  
+  page:any = this.totalPages;
+  
   constructor() { }
 
   ngOnInit(): void {
-    console.log("Child Component " + this.limit);
+    console.log("Child Component " + this.totalPages);
   }
 
+  pageChang(id:Number){
+    console.log("chang page=" + id);
+  }
   counter(i: number) {
     return new Array(i);
   }
