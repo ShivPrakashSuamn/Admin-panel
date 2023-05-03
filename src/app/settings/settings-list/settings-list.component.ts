@@ -14,6 +14,7 @@ export class SettingsListComponent {
   data:any = [];
   page:any = 1;
   totalRows:any = 0;
+  totalPage:any = 0;
   search:any='';
   limit:any = 10;
   order_by:any = 'id'; 
@@ -44,6 +45,7 @@ export class SettingsListComponent {
           this.page = data.data.page;
           this.data = data.data.data; 
           this.totalRows = data.data.total;
+          this.totalPage = data.data.totalPage;
         }else{
           this.alertService.error(data.message);  // data.message -----
         }
@@ -51,6 +53,10 @@ export class SettingsListComponent {
     );
   }
 
+  pageChange(e:any){
+    this.page = e;
+    this.getData();
+  }
   getTOFROM(){          //  pagination List  offset  ----------------------------
     let offset = (this.page -1 )*this.limit; 
     let l = this.limit;

@@ -14,6 +14,7 @@ export class PlansListComponent {
   limit:any = 10;
   page:any = 1;
   totalRows:any = 0;
+  totalPage:any = 0;
   order_by:any = 'id'; 
   order_type:any = 'desc';
   toggleVal:boolean = false;
@@ -46,6 +47,7 @@ export class PlansListComponent {
           this.page = data.data.page;
           this.data = data.data.data; 
           this.totalRows = data.data.total;
+          this.totalPage = data.data.totalPage;
         }else{
           this.alertService.error('Data Fatch Failed..');  // data.message -----
         }
@@ -54,7 +56,8 @@ export class PlansListComponent {
   }
 
   pageChange(e:any){    //  Page Change funcation   -----------------------------
-    console.log('pageChange',e)
+    this.page = e ; 
+    this.getData();
   }
 
   getTOFROM(){          //  pagination List  offset  ----------------------------

@@ -17,7 +17,7 @@
                                 </div>
                                 <div class="col-md-6 p-0">                                                                        
                                     <span style="float: right;">
-                                        <button type="button" class="btn squer-btn sm-btn edit icn"  (click)="exportList()" matBadge="{{userCount}}"  matBadgeColor="accent">Download CSV</button>
+                                        <button type="button" class="btn squer-btn sm-btn edit icn"  (click)="exportList()" matBadge="{{totalRows}}"  matBadgeColor="accent">Download CSV</button>
                                     </span>
                                 </div> 	
                             </div>
@@ -73,8 +73,8 @@
                                             </div>
                                             <span style="margin: 0; color: #b6b6b6d9;"> Showing {{getTOFROM()}} of {{totalRows}} entries</span>
                                             <!-- Pagination  System Design   -->
-                                            <div style=" float: right;">
-                                                
+                                            <div style=" float: right;" *ngIf="totalPage">
+                                                <app-pagination [page]="page" [totalPage]="totalPage" (newPage)="pageChange($event)"></app-pagination>
                                             </div>  
                                         </div>
                                     </div> 

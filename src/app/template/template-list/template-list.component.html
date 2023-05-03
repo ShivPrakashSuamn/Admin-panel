@@ -118,8 +118,8 @@
                                         <span style="margin: 0; color: #b6b6b6d9;"> Showing {{getTOFROM()}} of
                                             {{totalRows}} entries</span>
                                         <!-- Pagination  System Design   -->
-                                        <div style=" float: right;">
-
+                                        <div style=" float: right;" *ngIf="totalPage">
+                                            <app-pagination [totalPage]="totalPage" [page]="page" (newPage)="pageChange($event)"></app-pagination>
                                         </div>
                                     </div>
                                 </div>

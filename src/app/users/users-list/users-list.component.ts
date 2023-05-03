@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/_services/api.service';
 import { AlertService } from 'src/app/_services/alert.service';
 import Swal from 'sweetalert2';
 import { ngxCsv } from 'ngx-csv/ngx-csv';
+
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
@@ -24,7 +25,7 @@ export class UsersListComponent {
   mobile: string = '';
   image: string = '';
   created: string = '';
-
+  totalPage : any = 0; 
   // ---------------------    life cycle of angular    --------------------  ||
 
   constructor(private apiService: ApiService, private alertService: AlertService) { }
@@ -43,7 +44,7 @@ export class UsersListComponent {
         this.page = data.data.page;
         this.data = data.data.data;
         this.totalRows = data.data.allUser;
-        console.log('page=', this.page)
+        this.totalPage = data.data.totalPage;
       } else {
         this.alertService.error('Data Fatch Failed..');  // data.message -----
       }
@@ -52,7 +53,8 @@ export class UsersListComponent {
   }
 
   pageChange(e: any) {    //  Page Change funcation   -----------------------------
-    console.log('pageChange', e)
+    this.page = e;
+    this.getData(); 
   }
 
   getTOFROM() {          //  pagination List  offset  ----------------------------

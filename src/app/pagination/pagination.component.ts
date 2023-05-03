@@ -1,29 +1,27 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
-  template: `
-  Say {{ message}}
-`,
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent {
 
-  @Input() totalPages = '';
-  
-  page:any = this.totalPages;
-  
+  @Input() totalPage = '';
+  @Input() page = ''; 
+  @Output() newPage = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit(): void {
-    console.log("Child Component " + this.totalPages);
+    console.log("Child Component " + this.totalPage);
   }
 
-  pageChang(id:Number){
-    console.log("chang page=" + id);
+  pageChang(id:any){
+    this.page = id;
+    this.newPage.emit(id);
   }
-  counter(i: number) {
+  counter(i: any) {
     return new Array(i);
   }
 

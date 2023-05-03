@@ -14,11 +14,11 @@ export class PaymentListComponent {
   data:any = [];
   page:any = 1;
   totalRows:any = 0;
+  totalPage:any = 0;
   search:any='';
   limit:any = 10;
   order_by:any = 'id'; 
   order_type:any = 'desc';
-  userCount:any = '';
 
   // ---------------------    life cycle of angular    --------------------  ||
 
@@ -38,12 +38,17 @@ export class PaymentListComponent {
       if(data && data.status){
         this.data = data.data.data;
         this.page = data.data.page;
-        this.totalRows = data.data.total;
-        this.userCount = data.data.allUser;
+        this.totalPage = data.data.totalPage;
+        this.totalRows = data.data.allUser;
       } else {
         this.alertService.error('Data Fatch Failed..');  // data.message -----
       }
     });
+  }
+
+  pageChange(e: any) {    //  Page Change funcation   -----------------------------
+    this.page = e;
+    this.getData(); 
   }
 
   getTOFROM(){          //  pagination List  offset  ----------------------------
@@ -62,29 +67,6 @@ export class PaymentListComponent {
     }
     this.getData(); 
   }
-
-  // deleteRow(id:any) {   //  Delete Row Function     ----------------------------
-  //   console.log('id -->',id);
-  //   Swal.fire({
-  //     title: 'DELETE ROW ?',
-  //     text: 'Do you want to delete this row',
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonText: 'Yes, go ahead.',
-  //     cancelButtonText: 'No, let me think',
-  //   }).then((result) => {
-  //     if (result.value) {
-  //       Swal.fire('SuccessFully !', 'Row deleted Successfully.', 'success');
-  //       let url:string = `/payment/delete?id=${id}`;
-  //       this.apiService.get(url , {}).subscribe((data:any) => {
-  //         this.getData(); 
-  //         console.log('deleteRow Status -',data.status) ;   
-  //       });
-  //     } else if (result.dismiss === Swal.DismissReason.cancel) {
-  //       Swal.fire('Cancelled', 'Row still in our database.', 'error');
-  //     }
-  //   });
-  // }
 
   exportList() {        //  Export All Data in list   -------------------------- 
     Swal.fire({
