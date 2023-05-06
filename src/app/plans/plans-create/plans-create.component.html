@@ -69,8 +69,10 @@
                                                     <tbody>
                                                         <tr *ngFor="let passengerGroup of passenger?.controls; let i = index" [formGroupName]="i">
                                                             <th class="tex">{{i + 1}}</th>
-                                                            <td><input type="text"class="form-control bg-transparent" formControlName="feature_name" placeholder="Feature Name" /></td>
-                                                            <td><input type="text"class="form-control bg-transparent" formControlName="feature_value" placeholder="Feature Value" /></td>
+                                                            <td><input type="text"class="form-control bg-transparent" formControlName="feature_name" placeholder="Feature Name" 
+                                                                [style.border]="(submitted && f['feature_name'].errors && f['feature_name'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /></td>
+                                                            <td><input type="text"class="form-control bg-transparent" formControlName="feature_value" placeholder="Feature Value" 
+                                                                [style.border]="(submitted && f['feature_value'].errors && f['feature_value'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'"  /></td>
                                                             <td><button type="button" class="btn btn-danger" (click)="deleteRow(i)" >&times;</button></td>
                                                         </tr>
                                                         <tr>

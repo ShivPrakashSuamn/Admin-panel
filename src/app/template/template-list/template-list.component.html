@@ -49,10 +49,10 @@
                                             <tr *ngFor="let row of data">
                                                 <td>{{row.id}}</td>
                                                 <td class="p-1">
-                                                    <span *ngIf="row.thumbnail"><img src="http://localhost:3001{{row.thumbnail}}" class="rounded tableImg" alt="Thumbnail" /></span>
+                                                    <span *ngIf="row.thumbnail && row.thumbnail != 'null'"><img src="http://localhost:3001{{row.thumbnail}}" class="rounded tableImg" alt="Thumbnail" /></span>
                                                 </td>
-                                                <td> {{row.title}} </td>
-                                                <td> {{row.description}} </td>
+                                                <td> <div class="overflow"> {{row.title}} </div></td>
+                                                <td> <div class="overflow"> {{row.description}} </div></td>
                                                 <td> {{row.category}} </td>
                                                 <td> {{row.created | date:'medium'}} </td>
                                                 <td class="t_row p-0 text-center">
@@ -80,7 +80,7 @@
                                                 <div class="modal-body">
                                                     <div>
                                                         <!-- <td> {{thumbnail}} </td> -->
-                                                        <img *ngIf="thumbnail" src="http://localhost:3001/Upload/images/{{thumbnail}}" class="rounded imgThumbnail" />
+                                                        <img *ngIf="thumbnail" src="http://localhost:3001{{thumbnail}}" class="rounded imgThumbnail" />
                                                     </div>
                                                     <table class="table ">
                                                         <tr>
@@ -89,7 +89,7 @@
                                                         </tr>
                                                         <tr>
                                                             <th class="tex"> Description :</th>
-                                                            <td> {{ description }}</td>
+                                                            <td> <div class="overflow">  {{ description }} </div></td>
                                                         </tr>
                                                         <tr>
                                                             <th class="tex"> Created :</th>
@@ -104,7 +104,7 @@
                                         </div>
                                     </div>
                                     <!-- end -->
-                                    <div>
+                                    <div *ngIf="totalPage">
                                         <span class="tex" style="margin: 0; color: #b6b6b6d9;"> Show </span>
                                         <div class="btn-group">
                                             <select class="form-select dropbutton" aria-label="Default select example"
@@ -118,7 +118,7 @@
                                         <span style="margin: 0; color: #b6b6b6d9;"> Showing {{getTOFROM()}} of
                                             {{totalRows}} entries</span>
                                         <!-- Pagination  System Design   -->
-                                        <div style=" float: right;" *ngIf="totalPage">
+                                        <div style=" float: right;">
                                             <app-pagination [totalPage]="totalPage" [page]="page" (newPage)="pageChange($event)"></app-pagination>
                                         </div>
                                     </div>

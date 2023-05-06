@@ -83,11 +83,9 @@ export class PlansCreateComponent {
     console.log('Submit Button Click');
     this.submitted = true;
     if (this.createForm.valid) {
-      console.log('Create Form Data =', this.createForm.value);
-
+     // console.log('Create Form Data =', this.createForm.value);
       var body = this.createForm.value;
       body.features = this.form.value.passenger;
-      console.log('body', body)
       let url: string = '/plans/store';
       if (this.id) {
         url = `/plans/update?id=${this.id}`;

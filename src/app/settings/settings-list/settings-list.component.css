@@ -151,7 +151,7 @@ button[type="submit"]:hover {
 .overflow:hover {
   overflow: visible;
 }
-.imgThumbnail{
-  width: 465px;
-  margin-bottom: 30px !important;
+.tableImg {
+  width: 50px;
+  margin-bottom: 0px !important;
 }

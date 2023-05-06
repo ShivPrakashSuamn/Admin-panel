@@ -61,7 +61,7 @@
                                                 </tr>
                                             </tbody>     
                                         </table>
-                                        <div >
+                                        <div *ngIf="totalPage">
                                             <span class="tex" style="margin: 0; color: #b6b6b6d9;"> Show </span> 
                                             <div class="btn-group">
                                                 <select class="form-select dropbutton" aria-label="Default select example"  [(ngModel)]="limit" (change)="getData()">
@@ -73,7 +73,7 @@
                                             </div>
                                             <span style="margin: 0; color: #b6b6b6d9;"> Showing {{getTOFROM()}} of {{totalRows}} entries</span>
                                             <!-- Pagination  System Design   -->
-                                            <div style=" float: right;" *ngIf="totalPage">
+                                            <div style=" float: right;">
                                                 <app-pagination [page]="page" [totalPage]="totalPage" (newPage)="pageChange($event)"></app-pagination>
                                             </div>  
                                         </div>

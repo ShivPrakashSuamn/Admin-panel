@@ -143,11 +143,8 @@
   
   .overflow {
     white-space: nowrap;
-    width: 200px;
+    width: 300px;
+    margin-right: -80px;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  
-  .overflow:hover {
-    overflow: visible;
   }

@@ -41,11 +41,11 @@ export class SettingsListComponent {
   getData() {           //  Data Get databes   ---------------------------------
     let url:string = `/setting?limit=${this.limit}&page=${this.page}&order_by=${this.order_by}&order_type=${this.order_type}&search=${this.search}`;
     this.apiService.get(url, {}).subscribe((data:any) => {
-        if(data && data.status){
-          this.page = data.data.page;
-          this.data = data.data.data; 
-          this.totalRows = data.data.total;
-          this.totalPage = data.data.totalPage;
+      if(data && data.status){
+        this.page = data.data.page;
+        this.data = data.data.data; 
+        this.totalRows = data.data.allUser;
+        this.totalPage = data.data.totalPage;
         }else{
           this.alertService.error(data.message);  // data.message -----
         }

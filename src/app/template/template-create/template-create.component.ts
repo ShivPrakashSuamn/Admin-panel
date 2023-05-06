@@ -78,7 +78,6 @@ export class TemplateCreateComponent {
       headers.append('Accept', 'application/json');
       let options = { headers: headers };
       this.apiService.post(url, formData, options).subscribe((data: any) => {
-        console.log('Form Result -', data);
         if (data.status) {
           this.alertService.success(data.message); // Alert---
         } else {

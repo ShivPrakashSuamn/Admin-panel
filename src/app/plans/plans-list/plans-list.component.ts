@@ -46,7 +46,7 @@ export class PlansListComponent {
         if(data && data.status){
           this.page = data.data.page;
           this.data = data.data.data; 
-          this.totalRows = data.data.total;
+          this.totalRows = data.data.allUser;
           this.totalPage = data.data.totalPage;
         }else{
           this.alertService.error('Data Fatch Failed..');  // data.message -----

@@ -43,8 +43,11 @@
                                             <tbody>
                                                 <tr *ngFor="let row of data" >
                                                     <td> {{row.id}} </td> 
-                                                    <td> {{row.key}}  </td>
-                                                    <td> {{row.value}}  </td>
+                                                    <td> {{row.key}}  </td>                                               
+                                                    <td *ngIf="row.value && row.value == 'null'"> Null </td>                                        
+                                                    <td  *ngIf="row.value && row.value != 'null'" class="p-1">
+                                                        <img src="http://localhost:3001/uploads/images/{{row.value}}" class="rounded tableImg" alt="Logo" />
+                                                    </td>
                                                     <td> {{row.type}}  </td> 
                                                     <td> {{row.created | date:'short'}}  </td> 
                                                     <td class="t_row p-0 text-center">
@@ -70,8 +73,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div>
-                                                            <img *ngIf="value && value != 'null'" src="http://localhost:3001/uploads/images/{{value}}" class="rounded imgThumbnail" />
-                                                            
+                                                            <img *ngIf="value && value != 'null'" src="http://localhost:3001/uploads/images/{{value}}" class="rounded imgThumbnail" />                                                           
                                                         </div>
                                                         <table class="table table-bordered">
                                                             <tr *ngIf="value && value == 'null'">
@@ -99,7 +101,7 @@
                                             </div>
                                         </div>
                                         <!-- end -->
-                                        <div >
+                                        <div *ngIf="totalPage">
                                             <span class="tex" style="margin: 0; color: #b6b6b6d9;"> Show </span> 
                                             <div class="btn-group">
                                                 <select class="form-select dropbutton" aria-label="Default select example"  [(ngModel)]="limit" (change)="getData()">
@@ -111,7 +113,7 @@
                                             </div>
                                             <span style="margin: 0; color: #b6b6b6d9;"> Showing {{getTOFROM()}} of {{totalRows}} entries</span>
                                             <!-- Pagination  System Design   -->
-                                            <div style=" float: right;" *ngIf="totalPage">
+                                            <div style=" float: right;">
                                                 <app-pagination [totalPage]="totalPage" [page]="page" (newPage)="pageChange($event)"></app-pagination>
                                             </div>  
                                         </div>
