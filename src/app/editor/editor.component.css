@@ -1,0 +1,47 @@
+.card {
+    width: 100%;
+    margin-top: 75px;
+}
+
+.edit {
+    background: linear-gradient(315deg, #e91e63, #5d02ff);
+    color: white;
+    border: none;
+    margin: 2px 20px;
+    font-size: 19px;
+}
+
+.edit:hover {
+    background: linear-gradient(315deg, #5d02ff, #e91e63);
+}
+
+.edit:hover:active {
+    color: rgba(255, 255, 255, 0.521);
+    background: linear-gradient(315deg, #e91e6271, #5f02ff8c);
+}
+
+.battcolor:hover {
+    border: 1px solid #40e100;
+    color: #48ff00;
+}
+
+.battcolor {
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: 7px 25px;
+    font-size: 20px;
+}
+
+.icn {
+    padding: 6px 20px;
+}
+
+.listColor {
+    backdrop-filter: blur(100px);
+    background-color: rgb(237 246 255 / 93%);
+}
+
+.back-btu {
+    margin-left: 20px;
+    color: white;
+}

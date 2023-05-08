@@ -14,6 +14,7 @@ import { SettingsListComponent } from './settings/settings-list/settings-list.co
 import { SettingsUpdateComponent } from './settings/settings-update/settings-update.component';
 import { NoPageComponent } from './no-page/no-page.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { EditorComponent } from './editor/editor.component';
 
 const routes: Routes = [
   {path: 'sidebar', component: SidebarComponent},
@@ -33,6 +34,7 @@ const routes: Routes = [
     {path: 'setting/create', component: SettingsUpdateComponent},
     {path: 'setting/update/:id', component: SettingsUpdateComponent},
   {path: 'pagination', component:PaginationComponent},
+  {path: 'editor', component:EditorComponent},
   
   {path: '**', component: NoPageComponent},
 ];

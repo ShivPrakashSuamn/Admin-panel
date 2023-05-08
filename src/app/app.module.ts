@@ -24,6 +24,7 @@ import { SettingsListComponent } from './settings/settings-list/settings-list.co
 import { SettingsUpdateComponent } from './settings/settings-update/settings-update.component';
 import { NoPageComponent } from './no-page/no-page.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { EditorComponent } from './editor/editor.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     SettingsListComponent,
     SettingsUpdateComponent,
     NoPageComponent,
-    PaginationComponent
+    PaginationComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,
