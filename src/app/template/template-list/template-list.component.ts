@@ -42,7 +42,6 @@ export class TemplateListComponent {
       if (data && data.status) {
         this.page = data.data.page;
         this.data = data.data.data;
-        console.log('--', this.data)
         this.totalRows = data.data.total;
         this.totalPage = data.data.totalPage;
       } else {
