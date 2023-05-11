@@ -89,7 +89,7 @@
                                 <span class="nav_name">Users</span>
                             </a>
                         </li>
-                        <li [class.active]="getActive('template')" class="hover-Bg">
+                        <li [class.active]="getActive('template') || getActive('editor')" class="hover-Bg">
                             <a routerLink="/template" class="nav_link tex" style="margin-bottom: 18px;">
                                 <img src="../../assets/images/template1.png" style="width: 24px;">
                                 <span class="nav_name">Template</span>

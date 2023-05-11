@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxUiLoaderModule, NgxUiLoaderConfig, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,28 @@ import { SettingsUpdateComponent } from './settings/settings-update/settings-upd
 import { NoPageComponent } from './no-page/no-page.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { EditorComponent } from './editor/editor.component';
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  bgsColor: 'red',
+  bgsOpacity: 0.5,
+  bgsSize: 60,
+  blur: 5,
+  delay: 0,
+  fastFadeOut: true,
+  fgsColor: 'red',
+  fgsSize: 60,
+  gap: 24,
+  logoSize: 120,
+  overlayBorderRadius: '0',
+  overlayColor: 'rgba(40, 40, 40, 0.8)',
+  pbColor: 'red',
+  pbThickness: 5,
+  hasProgressBar: false,
+  text: 'Welcome to Editor',
+  textColor: '#FFFFFF',
+  maxTime: -1,
+  minTime: 500
+};
 
 @NgModule({
   declarations: [
@@ -56,6 +79,11 @@ import { EditorComponent } from './editor/editor.component';
     MatBadgeModule,
     MatButtonModule,
     ToastrModule.forRoot(), // ToastrModule added
+
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    NgxUiLoaderRouterModule, // import this module for showing loader automatically when navigating between app routes
+    NgxUiLoaderHttpModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

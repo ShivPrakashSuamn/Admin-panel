@@ -3,7 +3,6 @@
     <div style="transition: .5s;" class="p-0" [ngClass]="{'col-lg-1': toggleVal,'col-lg-2':!toggleVal}">
         <app-sidebar (sidebarToggle)=sidebarToggle($event)> </app-sidebar>
     </div>
-
     <div class="p-0 height-100" style="transition: .5s;" [ngClass]="{'col-lg-11': toggleVal,'col-lg-10':!toggleVal}">
         <div class="container-fluid ">
             <div class="col-lg-12">
@@ -56,7 +55,7 @@
                                                 <td> {{row.category}} </td>
                                                 <td> {{row.created | date:'medium'}} </td>
                                                 <td class="t_row p-0 text-center">
-                                                    <a routerLink="/template/update/{{row.id}}" data-dismiss="alert"><i class='bx bx-pencil nav_icon'></i> </a>
+                                                    <a routerLink="/editor" data-dismiss="alert"><i class='bx bx-pencil nav_icon'></i> </a>
                                                     <a herf="JavaScript:void(0)" (click)="showRow(row.id)" data-bs-toggle="modal" data-bs-target="#exampleModal" data-dismiss="alert">
                                                         <i class='bx bx-show nav_icon btn spas'></i>
                                                     </a>
