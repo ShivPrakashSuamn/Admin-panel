@@ -21,11 +21,22 @@
                                     </span>
                                 </div> 	
                             </div>
-                            <form style=" width: 38%;">
-                                <input type="text" class="form-control tex " style="border: none;" placeholder="Search...."
-                                    [(ngModel)]="search" name="search">
-                                <button type="submit" class="tex" (click)="getData()">Search</button>
-                            </form>
+                            <div class="row">
+                                <div class="col-md-6 p-0">
+                                    <form>
+                                        <input type="text" class="form-control tex " style="border: none;" placeholder="Search...." [(ngModel)]="search" name="search">
+                                        <button type="submit" class="tex" (click)="getData()">Search</button>
+                                    </form>
+                                </div>
+                                <div class="col-md-6 p-0">
+                                    <span style="float: right;">
+                                        <form class="form" [formGroup]="createForm" (ngSubmit)="order()">
+                                            <input type="text" class="form-control tex" style="border: none;" placeholder="Amount.." formControlName="amount" name="amount">
+                                            <input type="submit" class="btn squer-btn sm-btn edit" value="Pay">
+                                        </form>
+                                    </span>
+                                </div>
+                            </div>
                             <hr>	
                                 <div class="row" >  
                                     <div class="col-md-12 p-0">
