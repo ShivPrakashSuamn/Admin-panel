@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
+}
+.inputBorder{
+    border: 3px solid red;
+}
+.form
+{
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #000;
+    width: 30%;
+    padding: 40px 40px 60px;
+    border-radius: 10px;
+    text-align: center;
+}
+.form::before
+{
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
+    left: -2px;
+    background: linear-gradient(315deg,#e91e63,#5d02ff);
+    z-index: -1;
+    transform: skew(2deg,1deg);
+    border-radius: 10px;
+}
+.form h2
+{
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+.form .input
+{
+    margin-top: 40px;
+    text-align: left;
+}
+.form .input .inputBox
+{
+    margin-top: 10px;
+}
+.form .input .inputBox label
+{
+    display: block;
+    color: #fff;
+    margin-bottom: 5px;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+.form .input .inputBox input
+{
+    position: relative;
+    width: 100%;
+    height: 35px;
+    outline: none;
+    padding: 5px 15px;
+    font-size: 18px;
+    border-radius: 6px;
+}
+.form .input .inputBox input[type="submit"]
+{
+    border: none;
+    font-size: 20px;
+    padding: 2px;
+    cursor: pointer;
+    margin-top: 20px;
+    letter-spacing: 1px;
+    color: #ffffff;
+    background:linear-gradient(315deg,#e91e63,#5d02ff) ;
+}
+.form .input .inputBox input[type="submit"]:hover
+{
+    background:linear-gradient(315deg,#5d02ff,#e91e63) ;
+}
+.form .input .inputBox input[type="submit"]:active
+{
+    color: rgba(255, 255, 255, 0.521);
+    background:linear-gradient(315deg,#e91e6271,#5f02ff8c) ;
+}
+.forgot
+{
+    color: #a99f9fd9;
+    margin-top: 22px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+.forgot a
+{
+    color: #ff0800;
+}
+
+#loading { animation: rotation 2s infinite linear; }
+
+@keyframes rotation {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(359deg); }
+}
+.tex{
+    background:linear-gradient(315deg,#e91e63,#5d02ff) ;
+    display: inline-block;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dropbtn {
+    border: none;
+    background: transparent;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    margin: 0px -80px;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  
+  .dropdown:hover .dropdown-content {
+   display: block;
+  }

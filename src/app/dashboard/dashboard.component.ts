@@ -9,19 +9,31 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class DashboardComponent {
   toggleVal: boolean = false;
+  totalUser:Number = 0;
+  totalPlan:Number = 0;
+  totalPayment:Number = 0;
+  totalTemplate:Number = 0;
 
-  constructor(private apiService: ApiService) {
-    // it call first 
-  }
+  // ---------------------    life cycle of angular    --------------------  ||
+
+  constructor(private apiService: ApiService) { }
+
   ngOnInit() {
     this.getdata();
   }
+
+  // ---------------------      custome methods      -----------------------  ||
+
   getdata() {
-    let url: string = '/auth/profile';
+    let url: string = '/dashboard';
     let headers = new HttpHeaders().set("authorization", `Bearer ${localStorage.getItem('token')}`);
-    // this.apiService.get(url, { headers }).subscribe((data: any) => {
-    //   console.log('data ', data);
-    // });
+    this.apiService.get(url, { headers }).subscribe((data: any) => {
+      console.log('data ', data.data.totalUsers);
+      this.totalUser = data.data.totalUsers;
+      this.totalPlan = data.data.totalPlans;
+      this.totalPayment = data.data.totalPayments;
+      this.totalTemplate = data.data.totalTemplates;
+    });
   }
 
   sidebarToggle(eventData: { toggleVal: boolean }) {

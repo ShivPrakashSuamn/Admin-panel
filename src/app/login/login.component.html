@@ -1,0 +1,40 @@
+<div class="row" style="--bs-gutter-x: 0;">
+    <div class="col-sm-12">
+        <div class="dropdown m-4" style="float: right;">
+            <button class="dropbtn" id="loading"><i class="bx bx-cog  tex" style="font-size: 25px;"></i></button>
+            <div class="dropdown-content">
+                <a href="JavaScript:void(0);" (click)="light()" class="tex">Light Theme</a>
+                <a href="JavaScript:void(0);" (click)="dark()">Dark Theme</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-ui-loader></ngx-ui-loader>
+
+<div class="form" style="margin: auto; margin-top: 6%;">
+    <h2 class="tex">{{head}}</h2>
+    <div class="input">
+        <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+            <div class="inputBox">
+                <label class="tex">Email</label>
+                <input type="email" name="email" class="form-control bg-transparent"placeholder="Enter Email" formControlName="email"
+                    [style.border]="(submitted && f['email'].errors && f['email'].errors['required'])==true ? '1px solid red' :'1px solid #d5d5d5'">
+                <span *ngIf="submitted && f['email'].errors && f['email'].errors['required']" class="text-danger">Email
+                    field required</span>
+            </div>
+            <div class="inputBox">
+                <label class="tex">Password</label>
+                <input type="password" name="password" class="form-control bg-transparent" placeholder="Password" formControlName="password"
+                    [style.border]="(submitted && f['password'].errors && f['password'].errors['required'])==true ?'1px solid red' :'1px solid #d5d5d5'">
+                <span *ngIf="submitted && f['password'].errors && f['password'].errors['required']"
+                    class="text-danger">Password field required</span>
+            </div>
+            <div class="inputBox">
+                <input type="submit" name="" value="Log In">
+            </div>
+        </form>
+    </div>
+    <p class="forgot ">Create New Account <a routerLink="/signup">SignUp</a></p>
+</div>
+

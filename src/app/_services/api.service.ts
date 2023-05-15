@@ -10,8 +10,15 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  isLoggedIn(){
+    return localStorage.getItem('isLoggedIn')?true:false ; 
+  }
+
   get(url: string, options: any) {
-    return this.http.get(this.BASE_URL + url, options);
+    if( localStorage.getItem('isLoggedIn') && localStorage.getItem('token')){
+      options['Authorization'] = 'Bearer '+localStorage.getItem('token');
+    }
+    return this.http.get(this.BASE_URL + url, { headers:options });
   }
 
   post(url: string, formData: any, options: any) {

@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="dropdown m-4" style="float: right;">
+            <button class="dropbtn" id="loading"><i class="bx bx-cog  tex" style="font-size: 25px;"></i></button>
+            <div class="dropdown-content">
+                <a href="JavaScript:void(0);" (click)="light()" class="tex">Light Theme</a>
+                <a href="JavaScript:void(0);" (click)="dark()">Dark Theme</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form" style="margin: auto; margin-top: 6%;">
+        <h2 class="tex">Sign Up</h2>
+        <div class="input">
+            <form [formGroup]="signForm" (ngSubmit)="submit()">
+                <div class="inputBox">
+                    <div class="row">
+                        <div class="col-md-6 p-1">
+                            <label class="tex">First Name</label>
+                            <input type="text" name="fname" class="form-control bg-transparent" placeholder="Enter Name" formControlName="fname"
+                                [style.border]="(submitted && f['fname'].errors && f['fname'].errors['required'])==true ? '1px solid red' :'1px solid #d5d5d5'">
+                        </div>
+                        <div class="col-md-6 p-1">
+                            <label class="tex"> Last Name</label>
+                            <input type="text" name="lname" class="form-control bg-transparent" placeholder="Enter Name" formControlName="lname"
+                                [style.border]="(submitted && f['lname'].errors && f['lname'].errors['required'])==true ? '1px solid red' :'1px solid #d5d5d5'">
+                        </div>
+                    </div>
+                </div>
+                <div class="inputBox">
+                    <label class="tex">Email</label>
+                    <input type="email" name="email" class="form-control bg-transparent" placeholder="Enter email" formControlName="email"
+                        [style.border]="(submitted && f['email'].errors && f['email'].errors['required'])==true ? '1px solid red' :'1px solid #d5d5d5'">
+                </div>
+                <div class="inputBox">
+                    <label class="tex">Password</label>
+                    <input type="password" name="password" class="form-control bg-transparent" placeholder="password" formControlName="password"
+                        [style.border]="(submitted && f['password'].errors && f['password'].errors['required'])==true ? '1px solid red' :'1px solid #d5d5d5'">
+                </div>
+                <div class="inputBox">
+                    <label class="tex">Mobile</label>
+                    <input type="text" name="mobile" class="form-control bg-transparent" placeholder="Mobile no.." formControlName="mobile"
+                        [style.border]="(submitted && f['mobile'].errors && f['mobile'].errors['required'])==true ? '1px solid red' :'1px solid #d5d5d5'">
+                </div>
+                <div class="inputBox">
+                    <input type="submit" name="submit" value="Sign In">
+                </div>
+            </form>
+        </div>
+        <p class="forgot">Already Created Account?<a routerLink="/login"> Login</a></p>
+    </div>
+</div>

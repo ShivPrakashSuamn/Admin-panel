@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { ToastrModule } from 'ngx-toastr';
@@ -26,6 +26,9 @@ import { SettingsUpdateComponent } from './settings/settings-update/settings-upd
 import { NoPageComponent } from './no-page/no-page.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { EditorComponent } from './editor/editor.component';
+import { LoginComponent } from './login/login.component';
+import { SignComponent } from './sign/sign.component';
+import { HttpInterceptorInterceptor } from './http-interceptor.interceptor';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: 'red',
@@ -66,7 +69,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     SettingsUpdateComponent,
     NoPageComponent,
     PaginationComponent,
-    EditorComponent
+    EditorComponent,
+    LoginComponent,
+    SignComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +90,12 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderHttpModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpInterceptorInterceptor,
+    multi: true
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
