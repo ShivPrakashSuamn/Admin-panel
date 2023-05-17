@@ -43,7 +43,6 @@ export class LoginComponent {
     console.log('submitform ');
     this.submitted = true;
     if (this.loginForm.valid) {
-      console.log('form valid', this.loginForm.value) //after proper submit you will get value in this 
       let url = '/auth/login';
       let body = this.loginForm.value;
 
@@ -53,7 +52,7 @@ export class LoginComponent {
       let options = { headers: headers };
       // Post data Node ----
       this.apiService.post(url, body, options).subscribe((data:any)=>{
-        console.log('Form Result ->', data.data.token)
+        //console.log('Form Result ->', data.data.token)
         if(data.status){
           this.alertService.success(data.message);
           localStorage.setItem('isLoggedIn',"1");  

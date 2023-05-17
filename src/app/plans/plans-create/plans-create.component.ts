@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@ang
 import { AlertService } from 'src/app/_services/alert.service';
 import { ApiService } from 'src/app/_services/api.service';
 import { ActivatedRoute } from '@angular/router'
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-plans-create',
@@ -90,8 +91,9 @@ export class PlansCreateComponent {
       if (this.id) {
         url = `/plans/update?id=${this.id}`;
       }
-
-      this.apiService.post(url, body, {}).subscribe((data: any) => {
+      let headers = new HttpHeaders().set("authorization", `Bearer ${localStorage.getItem('token')}`);
+      let options = { headers: headers };
+      this.apiService.post(url, body, options).subscribe((data: any) => {
         console.log('form result -', data);
         if (data.status) {
           this.alertService.success(data.message); // Alert---

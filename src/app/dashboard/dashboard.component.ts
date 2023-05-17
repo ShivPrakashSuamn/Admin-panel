@@ -28,7 +28,6 @@ export class DashboardComponent {
     let url: string = '/dashboard';
     let headers = new HttpHeaders().set("authorization", `Bearer ${localStorage.getItem('token')}`);
     this.apiService.get(url, headers).subscribe((data: any) => {
-      console.log('data ', data.data.totalUsers);
       this.totalUser = data.data.totalUsers;
       this.totalPlan = data.data.totalPlans;
       this.totalPayment = data.data.totalPayments;

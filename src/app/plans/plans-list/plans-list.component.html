@@ -46,9 +46,10 @@
                                     <tbody >
                                         <!-- <ng-component *ngIf="data.length > 0" > -->
                                             <tr *ngFor="let row of data" >
+                                                
                                                 <td>{{row.id}}</td> 
                                                 <td>{{row.title}}</td> 
-                                                <td>{{row.price | currency:'INR'}}</td> 
+                                                <td>{{row.price|currency:'INR'}}</td> 
                                                 <td>{{row.offer_price | percent }}</td> 
                                                 <td>{{row.total_sell}}</td> 
                                                 <td *ngIf="row.status == 1">Active</td> 
