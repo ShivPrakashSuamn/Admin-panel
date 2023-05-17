@@ -41,15 +41,6 @@ export class PaymentListComponent {
 
   // ---------------------      custome methods      -----------------------  ||
 
-  order() {
-    console.log('Order Button Click', this.createForm.value);
-    let url: string = `/order`;
-    let body = this.createForm.value;
-    this.apiService.post(url, body, {}).subscribe((data: any) => {
-      console.log('Form Result -', data)
-    });
-  }
-
   getData() {            //  Get data databes   -------------------------------- 
     let url = `/payment?limit=${this.limit}&page=${this.page}&order_by=${this.order_by}&order_type=${this.order_type}&search=${this.search}`;
     this.apiService.get(url, {}).subscribe((data: any) => {
