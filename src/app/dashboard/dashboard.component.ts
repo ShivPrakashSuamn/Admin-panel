@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../_services/api.service';
 import { HttpHeaders } from '@angular/common/http';
+import { AlertService } from '../_services/alert.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,7 @@ export class DashboardComponent {
 
   // ---------------------    life cycle of angular    --------------------  ||
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private alertService:AlertService) { }
 
   ngOnInit() {
     this.getdata();
@@ -28,10 +29,14 @@ export class DashboardComponent {
     let url: string = '/dashboard';
     let headers = new HttpHeaders().set("authorization", `Bearer ${localStorage.getItem('token')}`);
     this.apiService.get(url, headers).subscribe((data: any) => {
+      if(data.status){
       this.totalUser = data.data.totalUsers;
       this.totalPlan = data.data.totalPlans;
       this.totalPayment = data.data.totalPayments;
       this.totalTemplate = data.data.totalTemplates; 
+      } else {
+        this.alertService.warning(data.message);
+      }
     });
   }
 

@@ -23,8 +23,9 @@ export class HttpInterceptorInterceptor implements HttpInterceptor {
           if (event instanceof HttpResponse) {
             this.resp = event.body;
             if (this.resp && !this.resp.status && this.resp.message && this.resp.message == "unauthorization request") {
+              localStorage.clear();
               this.router.navigate(['/login']);
-            }
+            } 
           }
         },
         error => {

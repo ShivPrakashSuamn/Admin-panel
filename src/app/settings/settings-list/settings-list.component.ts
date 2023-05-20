@@ -43,7 +43,8 @@ export class SettingsListComponent {
     this.apiService.get(url, {}).subscribe((data:any) => {
       if(data && data.status){
         this.page = data.data.page;
-        this.data = data.data.data; 
+        this.data = data.data.data;
+        console.log('data', this.data) 
         this.totalRows = data.data.allUser;
         this.totalPage = data.data.totalPage;
         }else{

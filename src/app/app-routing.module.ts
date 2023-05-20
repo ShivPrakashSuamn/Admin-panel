@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UsersCreateComponent } from './users/users-create/users-create.component';
@@ -20,7 +19,6 @@ import { SignComponent } from './sign/sign.component';
 import { AuthGuard } from './_services/auth.guard';
 
 const routes: Routes = [
-  // { path: 'sidebar', component: SidebarComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignComponent },
