@@ -55,6 +55,10 @@
                                         <input type="text" class="form-control bg-transparent" name="offer_price" placeholder="Enter Offer Price" formControlName="offer_price"
                                             [style.border]="(submitted && f['offer_price'].errors && f['offer_price'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'"/><br>
                                         
+                                        <label for="description" class="tex"> Description :</label>
+                                        <input type="text" class="form-control bg-transparent" name="description" placeholder="Enter Description" formControlName="description"
+                                            [style.border]="(submitted && f['description'].errors && f['description'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'"/><br>
+                                            
                                         <form [formGroup]="form">   
                                             <div formArrayName="passenger">                                          
                                                 <table class="table table-bordered" *ngIf = "isShow">

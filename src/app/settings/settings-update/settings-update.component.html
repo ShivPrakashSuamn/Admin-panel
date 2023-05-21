@@ -68,7 +68,7 @@
                                                 </select><br>
                                             
                                                 <label for="key" class="tex"> Key :</label>
-                                                <input type="text" class="form-control bg-transparent" name="key" placeholder="Enter Key" formControlName="key"
+                                                <input type="text" class="form-control bg-transparent" name="key" placeholder="Enter Key" formControlName="key" oninput="this.value = this.value.toUpperCase()"
                                                     [style.border]="(submitted && f['key'].errors && f['key'].errors['required'])==true ? '1px solid red' :'1px solid #c6c6c6'" /><br>
                                             
                                                 <div class="float-end">

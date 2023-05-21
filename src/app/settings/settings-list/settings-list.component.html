@@ -17,7 +17,7 @@
                                 </div>
                                 <div class="col-md-6 p-0">                                                                        
                                     <span style="float: right;">
-                                        <button routerLink="/setting/create" type="button" class="btn squer-btn sm-btn edit icn"><i class='bx bx-plus-circle nav_icon p-2'></i>New Setting</button>
+                                        <button routerLink="/setting/create" type="button" class="btn edit icn"><i class='bx bx-plus-circle nav_icon'></i>New Setting</button>
                                     </span>
                                 </div> 	
                             </div>
@@ -37,15 +37,16 @@
                                                     <th> Value </th>
                                                     <th (click)="sortBy('type')"> Type<i class='bx bx-sort nav_icon'></i></th>
                                                     <th> Created </th>
-                                                    <th> </th>
+                                                    <th class="text-center"> Action	</th>
                                                 </tr> 
                                             </thead>                                 
                                             <tbody>
                                                 <tr *ngFor="let row of data" >
                                                     <td> {{row.id}} </td> 
                                                     <td> {{row.key}}  </td>                                               
+                                                    <td *ngIf="row.value && row.value != 'null' && row.key != 'LOGO'"> {{ row.value }} </td>                                        
                                                     <td *ngIf="row.value && row.value == 'null'"> Null </td>                                        
-                                                    <td  *ngIf="row.value && row.value != 'null'" class="p-1">
+                                                    <td  *ngIf="row.value && row.value != 'null' && row.key == 'LOGO'" class="p-1">
                                                         <img src="http://localhost:3001/uploads/images/{{row.value}}" class="rounded tableImg" alt="Logo" />
                                                     </td>
                                                     <td> {{row.type}}  </td> 
@@ -72,13 +73,14 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <div>
-                                                            <img *ngIf="value && value != 'null'" src="http://localhost:3001/uploads/images/{{value}}" class="rounded imgThumbnail" />                                                           
-                                                        </div>
                                                         <table class="table table-bordered">
-                                                            <tr *ngIf="value && value == 'null'">
+                                                            <tr>
                                                                 <th class="tex"> Value :</th>
-                                                                <td> Null </td>
+                                                                <td *ngIf="value && value == 'null'"> Null </td>
+                                                                <td *ngIf="value && value != 'null' && key != 'LOGO'"> {{ value }} </td>
+                                                                <td *ngIf="value && value != 'null' && key == 'LOGO'"> 
+                                                                    <img  src="http://localhost:3001/uploads/images/{{value}}" class="rounded imgThumbnail" />       
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <th class="tex"> Category :</th>

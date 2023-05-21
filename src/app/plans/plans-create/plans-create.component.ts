@@ -19,6 +19,7 @@ export class PlansCreateComponent {
   title: any = '';
   price: any = '';
   offer_price: any = '';
+  description: any = '';
   total_sell: any = '';
   status: any = '';
   form: FormGroup;
@@ -30,6 +31,7 @@ export class PlansCreateComponent {
       title: ['', Validators.required],
       price: ['', Validators.required],
       offer_price: ['', Validators.required],
+      description: ['', Validators.required],
       status: ['', Validators.required],
     });
     this.form = new FormGroup({
@@ -116,6 +118,7 @@ export class PlansCreateComponent {
           title: [`${planData.title}`, Validators.required],
           price: [`${planData.price}`, Validators.required],
           offer_price: [`${planData.offer_price}`, Validators.required],
+          description: [`${planData.description}`, Validators.required],
           total_sell: [`${planData.total_sell}`, Validators.required],
           status: [`${planData.status}`, Validators.required],
         });
