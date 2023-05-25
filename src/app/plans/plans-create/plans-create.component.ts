@@ -30,7 +30,7 @@ export class PlansCreateComponent {
     this.createForm = fb.group({
       title: ['', Validators.required],
       price: ['', Validators.required],
-      offer_price: ['', Validators.required],
+      offer_price: ['',Validators.required],
       description: ['', Validators.required],
       status: ['', Validators.required],
     });
