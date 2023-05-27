@@ -51,7 +51,7 @@
                                                     <td> {{row.title}}  </td>
                                                     <td> {{row.fname}} {{row.lname}} </td>
                                                     <!-- <td> {{row.payment_id}}  </td>  -->
-                                                    <td> {{row.amount | currency}}  </td> 
+                                                    <td> {{row.amount | currency:'INR'}}  </td> 
                                                     <td *ngIf="row.status == 1"> Purchase </td> 
                                                     <td *ngIf="row.status == 0"> Unpurchase </td> 
                                                     <td> {{row.created | date:'short'}}  </td> 
