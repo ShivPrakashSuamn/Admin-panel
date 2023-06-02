@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl,FormArray} from '@angul
 import { AlertService } from '../../_services/alert.service';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/_services/api.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-payment-update',
@@ -58,8 +59,9 @@ export class PaymentUpdateComponent {
     if (this.createForm.valid) {
       let url: string = `/payment/update?id=${this.id}`; 
       const body = this.createForm.value;
-      this.apiService.post(url, body, {}).subscribe((data: any) => {
-        console.log('Form Result -', data)
+      let headers = new HttpHeaders().set("authorization", `Bearer ${localStorage.getItem('token')}`);
+      let options = { headers: headers };
+      this.apiService.post(url, body, options).subscribe((data: any) => {
         if(data.status){
           this.alertService.success(data.message); // Alert---
         } else {
