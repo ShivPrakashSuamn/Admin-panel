@@ -21,7 +21,7 @@ export class PaymentUpdateComponent {
   isShow:any=false;
   planData:any = [];
   // ----------------    life cycle of angular    --------------------  ||
-
+ 
   constructor(private fb: FormBuilder, private alertService: AlertService, private route: ActivatedRoute, private apiService: ApiService) {
     this.createForm = fb.group({
       plan_id: ['', [Validators.required]],
