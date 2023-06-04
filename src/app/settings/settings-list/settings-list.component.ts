@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from "src/app/_services/api.service";
 import { AlertService } from 'src/app/_services/alert.service';
-import { ngxCsv } from 'ngx-csv/ngx-csv';
 import Swal from 'sweetalert2';
 
 @Component({
